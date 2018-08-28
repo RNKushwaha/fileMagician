@@ -81,7 +81,7 @@ function formatSizeUnits($bytes){
         }).done(function (result) {
             $("#fileLists").html(tmpl("template-download", result));
             $("#fileLists tr").removeClass('fade');
-            $('#metadata label[for=size] span').text(result.info.size);
+            $('#metadata label[for=size] span').text(result.info.size+' ('+result.info.sizeByte+' bytes)');
             $('#metadata label[for=permission] span').text(result.info.permissionFull);
             $('#metadata #updatePermission').val(result.info.permission);
             $('#metadata label[for=created] span').text(result.info.created);
@@ -90,7 +90,7 @@ function formatSizeUnits($bytes){
             $('#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width]').hide();
             $('#metadata label[for=contains] span').text(result.info.folderCount+' folders & '+result.info.totalFiles+' files');
             $('#metadata label[for=contains]').show();
-            $('#metadata label[for=path],#editImage').hide();
+            $('#metadata label[for=path],#editImage,#docViewer').hide();
             // $(this).fileupload('option', 'done') .call(this, $.Event('done'), {result: result});
         });
     }
@@ -472,7 +472,7 @@ function formatSizeUnits($bytes){
                     $('#directory').val(data.node.id);
                     $('#uploader').show();
                     showFolderContents();
-                    $('#editor,#imageEditor,#info,#editImage').hide();
+                    $('#editor,#imageEditor,#info,#editImage,#docViewer').hide();
                     return;
                 }
 
@@ -507,10 +507,10 @@ function formatSizeUnits($bytes){
                             case 'php':
                             case 'tmpl':
                                 $('#editor').show();
-                                $('#uploader,#imageEditor,#info').hide();
+                                $('#uploader,#imageEditor,#info,#docViewer').hide();
                                 $configureEditor(fileid, d.type, d.content);
                                 // $('#metadata label[for=path] span').text(d.info.path);
-                                $('#metadata label[for=size] span').text(d.info.size);
+                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
@@ -530,12 +530,12 @@ function formatSizeUnits($bytes){
                                 $('#imageEditor img').one('load', function () { }).attr('src',d.info.hostUrl+d.content);
                                 $('#imageEditor').show();
                                 $('#editImage').attr('href','imageEditor.php?image='+d.info.hostUrl+d.content).show();
-                                $('#uploader,#editor,#info').hide();
+                                $('#uploader,#editor,#info,#docViewer').hide();
                                 $('#imageEditor p').remove();
                                 $('#metadata label[for=height] span').text(d.info.height);
                                 $('#metadata label[for=width] span').text(d.info.width);
                                 // $('#metadata label[for=path] span').text(d.info.path);
-                                $('#metadata label[for=size] span').text(d.info.size);
+                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
@@ -562,7 +562,7 @@ function formatSizeUnits($bytes){
                                 $('#docViewer').html(`<iframe src="${d.content}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" style="border:0" height="100%"></iframe>`);
                                 $('#docViewer').show();
                                 $('#uploader,#imageEditor,#info,#editor').hide();
-                                $('#metadata label[for=size] span').text(d.info.size);
+                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);

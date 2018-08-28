@@ -101,8 +101,10 @@ class fs
 				case 'tmpl':
 					clearstatcache();
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
+					$filesize = filesize( $dir );
 					$dat['info'] = array(
-						'size'       => $this->formatSizeUnits(filesize( $dir )),
+						'sizeByte'   => number_format($filesize),
+						'size'       => $this->formatSizeUnits($filesize),
 						'path'       => $dir,
 						'hostUrl'   => $this->get_full_url_parent(),
 						'permission' => substr(sprintf('%o', fileperms($dir)), -4),
@@ -122,8 +124,10 @@ class fs
 				case 'webp':
 					list($width, $height, $type, $attr) = getimagesize($dir);
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
+					$filesize = filesize( $dir );
 					$dat['info'] = array(
-						'size'       => $this->formatSizeUnits(filesize( $dir )),
+						'sizeByte'     => number_format($filesize),
+						'size'       => $this->formatSizeUnits($filesize),
 						'path'       => $dir,
 						'hostUrl'   => $this->get_full_url_parent(),
 						'height'     => $height,
@@ -154,8 +158,10 @@ class fs
 					case 'DOCX':
 					case 'DOCX':
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
+					$filesize = filesize( $dir );
 					$dat['info'] = array(
-						'size'       => $this->formatSizeUnits(filesize( $dir )),
+						'sizeByte'   => number_format($filesize),
+						'size'       => $this->formatSizeUnits($filesize),
 						'path'       => $dir,
 						'hostUrl'   => $this->get_full_url_parent(),
 						'permission' => $filePer,

@@ -1387,10 +1387,11 @@ class UploadHandler
         }
 
         $dir  = ROOT.$this->options['file_dir'];
-        $io   = popen ( '/usr/bin/du -sb ' . $dir, 'r' );
+        /*$io   = popen ( '/usr/bin/du -sk ' . $dir, 'r' );
         $folderSize = fgets ( $io, 80);
         $folderSize = substr ( $folderSize, 0, strpos ( $folderSize, "\t" ) );
-        pclose ( $io );
+        pclose ( $io );*/
+        $folderSize = $this->GetDirectorySize($dir);
 
         $io   = popen ( '/usr/bin/find '.$dir.' -mindepth 1 -type d -print| wc -l', 'r' );
         $folderCount = fgets ( $io, 80);
@@ -1406,17 +1407,17 @@ class UploadHandler
        
         $filePer = substr(sprintf('%o', fileperms($dir)), -4);
         $response['info'] = array(
-            'sizeBytes'      => $folderSize,
+            'sizeByte'          => number_format($folderSize),
             'size'            => $this->formatSizeUnits($folderSize),
             'path'            => $dir,
-            'host_url'        => $this->get_full_url_parent(),
+            'hostUrl'        => $this->get_full_url_parent(),
             'permission'      => substr(sprintf('%o', fileperms($dir)), -4),
             'permissionFull' => $this->convert_perms_to_rwx($filePer,$dir),
             'created'         => date ("Y-m-d H:i:s", filectime($dir)),
             'modified'        => date ("Y-m-d H:i:s", filemtime($dir)),
             'accessed'        => date ("Y-m-d H:i:s", fileatime($dir)),
             'totalFiles'     => count($totalFiles),
-            'folderCount'     => $folderCount
+            'folderCount'     => trim($folderCount)
         );
 
         return $this->generate_response($response, $print_response);
