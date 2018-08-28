@@ -1,0 +1,29 @@
+/*----------------------- basic css style --------------------------*/
+@font-face {
+	font-family: 'Arial Rounded MT';
+	src: url('ArialRoundedMTBold.eot');
+	src: url('ArialRoundedMTBold.eot?#iefix') format('embedded-opentype'),
+		url('ArialRoundedMTBold.woff') format('woff'),
+		url('ArialRoundedMTBold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+body{font-family:'Oxygen',Arial,Helvetica,sans-serif;font-size:12px;color:#5c5c5c;overflow-x:hidden}
+a{text-decoration:none;cursor:pointer}
+a:hover{text-decoration:none}
+img{border:none;outline:none}
+.img img{width:100%}
+.uppercase-txt{text-transform:uppercase}
+ul.list,ol.list{color:#595959;font-size:15px;line-height:22px;margin-bottom:10px}
+p{color:#595959;font-size:14px;line-height:26px;margin-bottom:10px}
+h1{font-family:'Lato',sans-serif; font-size:31px;font-weight:500;margin:0 0 50px;color:#22548d;line-height:27px;text-align:center; position:relative}
+h1:before {background-color: #f89505;bottom: 0;content: "";height: 2px;position: absolute;width: 30px;left: 50%;margin-bottom: -9px;}
+h2{font-family:'Lato',sans-serif; font-size:22px;margin:0 0 20px;color:#1f1f1f;line-height:22px}
+.green-txt{color:#02b8b4}
+.border-bottom{width:200px;border-bottom:1px solid #fff}
+.yellow-txt{color:#ffcd46}
+
+
+
+
+

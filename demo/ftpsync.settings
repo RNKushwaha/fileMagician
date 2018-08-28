@@ -1,0 +1,11 @@
+{
+	"default": {
+
+		"host": "yourhostname.com",
+		"username": "asddsada",  // or null for anonymous login
+		"password": "yourpassword",
+		"path": "/path",
+		"upload_on_save": false, // set *false* if you do not want to upload on save!
+
+	}
+}
