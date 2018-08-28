@@ -138,6 +138,34 @@ class fs
 					$dat['content'] = $id;
 					// $dat['content'] = 'data:'.finfo_file(finfo_open(FILEINFO_MIME_TYPE), $dir).';base64,'.base64_encode(file_get_contents($dir));
 					break;
+					case 'zip':
+					case 'ZIP':
+					case 'gz':
+					case 'GZ':
+					case 'pdf':
+					case 'PDF':
+					case 'xls':
+					case 'XLS':
+					case 'csv':
+					case 'CSV':
+					case 'doc':
+					case 'docx':
+					case 'DOC':
+					case 'DOCX':
+					case 'DOCX':
+					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
+					$dat['info'] = array(
+						'size'       => $this->formatSizeUnits(filesize( $dir )),
+						'path'       => $dir,
+						'hostUrl'   => $this->get_full_url_parent(),
+						'permission' => $filePer,
+						'permissionFull' => $this->convert_perms_to_rwx($filePer,$dir),
+						'created'    => date ("Y-m-d H:i:s", filectime($dir)),
+						'modified'   => date ("Y-m-d H:i:s", filemtime($dir)),
+						'accessed'   => date ("Y-m-d H:i:s", fileatime($dir)),
+					);
+					$dat['content'] = 'https://docs.google.com/viewer?url='.$this->get_full_url_parent().$id;
+					break;
 				default:
 					$dat['content'] = 'File not recognized: '.$this->id($dir);
 					break;

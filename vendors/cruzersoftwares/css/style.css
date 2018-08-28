@@ -2,7 +2,7 @@
 html,body{box-sizing: border-box;margin: 0;padding: 0}
 body{overflow: hidden;}
 a{text-decoration: none;}
-#editor,#imageEditor,#uploader,#info{position: absolute;left: 305px;right: 0;top:123px;bottom: 0;padding: 20px}
+#editor,#imageEditor,#uploader,#info,#docViewer{position: absolute;left: 305px;right: 0;top:123px;bottom: 0;padding: 20px}
 #info{background: #1d1919;z-index: 9999;opacity: 0.8;color: #fff;}
 #imageEditor img{max-height: 80vh;max-width: 80vw;}
 #metadata{font-size: 15px; color: #333; display: block; position: absolute; z-index: 99999; top: 68px; left: 310px;}

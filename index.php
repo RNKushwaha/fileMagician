@@ -294,6 +294,7 @@ else $show_indent = true;
 
                 </div>
                 <div id="imageEditor" style="display: none;"><img /></div>
+                <div id="docViewer" style="display: none;"></div>
           </div>
         </div>
     </div>

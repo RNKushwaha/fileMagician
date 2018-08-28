@@ -544,6 +544,32 @@ function formatSizeUnits($bytes){
                                 $('#metadata label[for=height],#metadata label[for=width]').show();
                                 $('#metadata label[for=contains],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character]').hide();
                                 break;
+                            case 'zip':
+                            case 'ZIP':
+                            case 'gz':
+                            case 'GZ':
+                            case 'pdf':
+                            case 'PDF':
+                            case 'xls':
+                            case 'XLS':
+                            case 'csv':
+                            case 'CSV':
+                            case 'doc':
+                            case 'docx':
+                            case 'DOC':
+                            case 'DOCX':
+                            case 'DOCX':
+                                $('#docViewer').html(`<iframe src="${d.content}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" style="border:0" height="100%"></iframe>`);
+                                $('#docViewer').show();
+                                $('#uploader,#imageEditor,#info,#editor').hide();
+                                $('#metadata label[for=size] span').text(d.info.size);
+                                $('#metadata label[for=permission] span').text(d.info.permissionFull);
+                                $('#metadata #updatePermission').val(d.info.permission);
+                                $('#metadata label[for=created] span').text(d.info.created);
+                                $('#metadata label[for=lastmodified] span').text(d.info.modified);
+                                $('#metadata label[for=lastaccessed] span').text(d.info.accessed);
+                                $('#metadata label[for=contains],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#editImage').hide();
+                                break;
                             default:
                                 $('#data .default').html(d.content).show();
                                 break;
