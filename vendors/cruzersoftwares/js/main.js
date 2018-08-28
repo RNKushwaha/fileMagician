@@ -90,7 +90,7 @@ function formatSizeUnits($bytes){
             $('#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width]').hide();
             $('#metadata label[for=contains] span').text(result.info.folderCount+' folders & '+result.info.totalFiles+' files');
             $('#metadata label[for=contains]').show();
-            $('#metadata label[for=path]').hide();
+            $('#metadata label[for=path],#editImage').hide();
             // $(this).fileupload('option', 'done') .call(this, $.Event('done'), {result: result});
         });
     }
@@ -472,7 +472,7 @@ function formatSizeUnits($bytes){
                     $('#directory').val(data.node.id);
                     $('#uploader').show();
                     showFolderContents();
-                    $('#editor,#imageEditor,#info').hide();
+                    $('#editor,#imageEditor,#info,#editImage').hide();
                     return;
                 }
 
@@ -517,17 +517,19 @@ function formatSizeUnits($bytes){
                                 $('#metadata label[for=lastmodified] span').text(d.info.modified);
                                 $('#metadata label[for=lastaccessed] span').text(d.info.accessed);
                                 $('#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character]').show();
-                                $('#metadata label[for=contains],#metadata label[for=height],#metadata label[for=width]').hide();
+                                $('#metadata label[for=contains],#metadata label[for=height],#metadata label[for=width],#editImage').hide();
                                 break;
                             case 'png':
                             case 'jpg':
                             case 'jpeg':
                             case 'bmp':
                             case 'gif':
+                            case 'ico':
                             case 'webp':
                                 $('#imageEditor img').after('<p>..loading</p>');
-                                $('#imageEditor img').one('load', function () { }).attr('src',d.info.hostUrl+'/'+d.content);
+                                $('#imageEditor img').one('load', function () { }).attr('src',d.info.hostUrl+d.content);
                                 $('#imageEditor').show();
+                                $('#editImage').attr('href','imageEditor.php?image='+d.info.hostUrl+d.content).show();
                                 $('#uploader,#editor,#info').hide();
                                 $('#imageEditor p').remove();
                                 $('#metadata label[for=height] span').text(d.info.height);

@@ -117,6 +117,7 @@ class fs
 				case 'jpeg':
 				case 'gif':
 				case 'png':
+				case 'ico':
 				case 'bmp':
 				case 'webp':
 					list($width, $height, $type, $attr) = getimagesize($dir);
@@ -262,6 +263,7 @@ class fs
 				case 'jpeg':
 				case 'gif':
 				case 'png':
+				case 'ico':
 				case 'bmp':
 				case 'webp':
 					$dat['content'] = 'data:'.finfo_file(finfo_open(FILEINFO_MIME_TYPE), $dir).';base64,'.base64_encode(file_get_contents($dir));
@@ -356,13 +358,27 @@ class fs
 	}
 }
 
-if(isset($_GET['action'])) {
+if(isset($_POST) && isset($_POST['img'])){
+	$img = $_POST['img'];
+	$img = str_replace('data:image/png;base64,', '', $img);
+	$img = str_replace('data:image/jpg;base64,', '', $img);
+	$img = str_replace('data:image/gif;base64,', '', $img);
+	$img = str_replace('data:image/jpeg;base64,', '', $img);
+	$img = str_replace(' ', '+', $img);
+	$data = base64_decode($img);
+	$_POST['name'] = str_replace($_SERVER['HTTP_HOST'], '', $_POST['name']);
+	$_POST['name'] = str_replace(['http:///','https:///','http://www./'],'',$_POST['name']);
+	$file = substr($_POST['name'],0,strrpos($_POST['name'], '.',true));
+	$success = file_put_contents(ROOT.$file.strstr($_POST['name'], '.',false), $data);
+	print $success ? 'file saved' : 'Unable to save the file.';
+	exit;
+} elseif(isset($_GET['action'])) {
 	$fs = new fs( dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 	$node = isset($_POST['id']) && $_POST['id'] !== '#' ? $_POST['id'] : '/';
 	$rslt = $fs->save_file($node, $_POST['content']);
 
 	echo json_encode(array('saved' => true));exit;
-} else if(isset($_GET['operation'])) {
+} elseif(isset($_GET['operation'])) {
 	$fs = new fs( dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 	try {
 		$rslt = null;

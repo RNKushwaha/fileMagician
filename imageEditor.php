@@ -3,14 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Image Editor</title>
-        <link type="text/css" href="//uicdn.toast.com/tui-color-picker/v2.2.0/tui-color-picker.css" rel="stylesheet">
-        <link type="text/css" href="dist/tui-image-editor.min.css" rel="stylesheet">
+        <link type="text/css" href="vendors/tui/css/tui-color-picker.css" rel="stylesheet">
+        <link type="text/css" href="vendors/tui/css/tui-image-editor.min.css" rel="stylesheet">
         <style>
             @import url(//fonts.googleapis.com/css?family=Noto+Sans);
-            html, body {
-                height: 100%;
-                margin: 0;
-            }
+            html, body {height: 100%; margin: 0;}
             .tui-image-editor-header-logo{display: none;height: 0;width: 0;opacity: 0;}
         </style>
     </head>
@@ -18,21 +15,21 @@
 
         <div id="tui-image-editor-container"></div>
 
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.js"></script>
-        <script type="text/javascript" src="//uicdn.toast.com/tui.code-snippet/v1.3.0/tui-code-snippet.min.js"></script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
-        <script type="text/javascript" src="//cdn.rawgit.com/nhnent/tui.color-picker/v2.2.0/dist/tui-color-picker.js"></script>
-        <script type="text/javascript" src="dist/tui-image-editor.min.js"></script>
-        <script type="text/javascript" src="white-theme.js"></script>
-        <script type="text/javascript" src="black-theme.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/fabric.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/tui-code-snippet.min.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/FileSaver.min.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/tui-color-picker.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/tui-image-editor.min.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/white-theme.js"></script>
+        <script type="text/javascript" src="vendors/tui/js/black-theme.js"></script>
+        <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js"></script>
         <script>
-         var fileName = '4.png';
+         var fileName = '<?php echo $_REQUEST['image']?>';
          var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
              includeUI: {
                  loadImage: {
                      path: fileName,
-                     name: 'SampleImage'
+                     name: fileName
                  },
                  theme: blackTheme, // or whiteTheme
                  initMenu: 'filter',
@@ -56,7 +53,7 @@
 
                 $.ajax({
                   type: "POST",
-                  url: "save.php",
+                  url: "handler.php",
                   data: { 
                      name: fileName,
                      img: canvas.toDataURL("image/"+fileExt)

@@ -154,6 +154,7 @@ else $show_indent = true;
                         <input type="text" class="input" value="" required="required" id="updatePermission">
                         <button class="btn btn-primary" id="updatePermissionBtn">Save</button>
                     </label>
+                    <a href ="imageEditor.php?image=" target="_blank" class="btn btn-primary" id="editImage">Edit Image</a>
                 </div>
                 <div id="editor" spellcheck="true"></div>
                 <div id="info" style="display: none;">

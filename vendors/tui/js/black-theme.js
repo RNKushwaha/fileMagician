@@ -26,9 +26,9 @@ var blackTheme = {
     'downloadButton.fontSize': '12px',
 
     // main icons
-    'menu.normalIcon.path': 'dist/svg/icon-b.svg',
+    'menu.normalIcon.path': 'vendors/tui/svg/icon-b.svg',
     'menu.normalIcon.name': 'icon-b',
-    'menu.activeIcon.path': 'dist/svg/icon-a.svg',
+    'menu.activeIcon.path': 'vendors/tui/svg/icon-a.svg',
     'menu.activeIcon.name': 'icon-a',
     'menu.iconSize.width': '24px',
     'menu.iconSize.height': '24px',
@@ -38,9 +38,9 @@ var blackTheme = {
     'submenu.partition.color': '#858585',
 
     // submenu icons
-    'submenu.normalIcon.path': 'dist/svg/icon-a.svg',
+    'submenu.normalIcon.path': 'vendors/tui/svg/icon-a.svg',
     'submenu.normalIcon.name': 'icon-a',
-    'submenu.activeIcon.path': 'dist/svg/icon-c.svg',
+    'submenu.activeIcon.path': 'vendors/tui/svg/icon-c.svg',
     'submenu.activeIcon.name': 'icon-c',
     'submenu.iconSize.width': '32px',
     'submenu.iconSize.height': '32px',
