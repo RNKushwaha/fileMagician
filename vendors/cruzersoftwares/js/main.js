@@ -197,7 +197,7 @@ function formatSizeUnits($bytes){
             var theme = getCookie('theme');
             
             if (!theme) {
-                theme = 'ambiance';
+                theme = 'eclipse';
             }
 
             var font_size = getCookie('font_size');
@@ -282,8 +282,8 @@ function formatSizeUnits($bytes){
     editor.session.selection.on('changeCursor', function(e) {
         var meta = editor.selection.getCursor();
         $('#metadata label[for=totallines] span').text(editor.session.getLength());
-        $('#metadata label[for=line] span').text((meta.row+1));
-        $('#metadata label[for=character] span').text(meta.column);
+        $('#metadata label[for=line] span').text((meta.row+1)+':'+meta.column);
+        // $('#metadata label[for=character] span').text(meta.column);
     });
 
     editor.commands.addCommand({
@@ -510,7 +510,7 @@ function formatSizeUnits($bytes){
                                 $('#uploader,#imageEditor,#info,#docViewer').hide();
                                 $configureEditor(fileid, d.type, d.content);
                                 // $('#metadata label[for=path] span').text(d.info.path);
-                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
+                                $('#metadata label[for=size] span').text(d.info.size);
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
@@ -535,7 +535,7 @@ function formatSizeUnits($bytes){
                                 $('#metadata label[for=height] span').text(d.info.height);
                                 $('#metadata label[for=width] span').text(d.info.width);
                                 // $('#metadata label[for=path] span').text(d.info.path);
-                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
+                                $('#metadata label[for=size] span').text(d.info.size);
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
@@ -562,7 +562,7 @@ function formatSizeUnits($bytes){
                                 $('#docViewer').html(`<iframe src="${d.content}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" style="border:0" height="100%"></iframe>`);
                                 $('#docViewer').show();
                                 $('#uploader,#imageEditor,#info,#editor').hide();
-                                $('#metadata label[for=size] span').text(d.info.size+' ('+d.info.sizeByte+' bytes)');
+                                $('#metadata label[for=size] span').text(d.info.size);
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);

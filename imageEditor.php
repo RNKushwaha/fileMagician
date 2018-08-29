@@ -1,3 +1,4 @@
+<?php require_once 'init.php';?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,7 @@
         <link type="text/css" href="vendors/tui/css/tui-color-picker.css" rel="stylesheet">
         <link type="text/css" href="vendors/tui/css/tui-image-editor.min.css" rel="stylesheet">
         <style>
-            @import url(//fonts.googleapis.com/css?family=Noto+Sans);
+            /*@import url(//fonts.googleapis.com/css?family=Noto+Sans);*/
             html, body {height: 100%; margin: 0;}
             .tui-image-editor-header-logo{display: none;height: 0;width: 0;opacity: 0;}
         </style>

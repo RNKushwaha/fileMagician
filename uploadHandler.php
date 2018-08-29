@@ -9,10 +9,7 @@
  * Licensed under the MIT license:
  * https://opensource.org/licenses/MIT
  */
-ini_set('open_basedir', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-error_reporting(E_ALL | E_STRICT);
-ini_set('error_log', 'errors.log');
-define('ROOT',$_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR);
+require_once 'init.php';
 
 $upload_handler = new UploadHandler(isset($_REQUEST['directory']) ? $_REQUEST['directory']: '');
 
