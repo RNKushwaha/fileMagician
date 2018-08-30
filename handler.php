@@ -73,6 +73,7 @@ class fs
 				case 'txt':
 				case 'text':
 				case 'md':
+				case 'ts':
 				case 'js':
 				case 'json':
 				case 'css':
@@ -83,19 +84,25 @@ class fs
 				case 'htm':
 				case 'xml':
 				case 'yml':
+				case 'yaml':
 				case 'c':
 				case 'cpp':
 				case 'h':
 				case 'sql':
+				case 'pgsql':
 				case 'log':
 				case 'py':
 				case 'rb':
+				case 'pl':
 				case 'asp':
 				case 'aspx':
 				case 'java':
 				case 'htaccess':
+				case 'sh':
 				case 'php':
+				case 'blade':
 				case 'tmpl':
+				case 'twig':
 					clearstatcache();
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
 					$filesize = filesize( $dir );
@@ -251,6 +258,7 @@ class fs
 				case 'txt':
 				case 'text':
 				case 'md':
+				case 'ts':
 				case 'js':
 				case 'json':
 				case 'css':
@@ -261,19 +269,25 @@ class fs
 				case 'htm':
 				case 'xml':
 				case 'yml':
+				case 'yaml':
 				case 'c':
 				case 'cpp':
 				case 'h':
 				case 'sql':
+				case 'pgsql':
 				case 'log':
 				case 'py':
 				case 'rb':
+				case 'pl':
 				case 'asp':
 				case 'aspx':
 				case 'java':
 				case 'htaccess':
+				case 'sh':
 				case 'php':
+				case 'blade':
 				case 'tmpl':
+				case 'twig':
 					$foldersParams = explode('/', $id);
 					if(count($foldersParams)){
 						$fileToSave = array_pop($foldersParams);

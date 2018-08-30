@@ -58,90 +58,6 @@ else $show_indent = true;
           <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <div class="" id="fileMleftsidebar">
-                    <div id="settings">
-                        <label for="theme" class="fileTreeLabel">Theme</label>
-                        <select name="theme" id="theme">
-                            <option value="ambiance" <?php if($theme=='ambiance') echo 'selected';?>>ambiance</option>
-                            <option value="chaos" <?php if($theme=='chaos') echo 'selected';?>>chaos</option>
-                            <option value="chrome" <?php if($theme=='chrome') echo 'selected';?>>chrome</option>
-                            <option value="clouds_midnight" <?php if($theme=='clouds_midnight') echo 'selected';?>>clouds_midnight</option>
-                            <option value="clouds" <?php if($theme=='clouds') echo 'selected';?>>clouds</option>
-                            <option value="cobalt" <?php if($theme=='cobalt') echo 'selected';?>>cobalt</option>
-                            <option value="crimson_editor" <?php if($theme=='crimson_editor') echo 'selected';?>>crimson_editor</option>
-                            <option value="dawn" <?php if($theme=='dawn') echo 'selected';?>>dawn</option>
-                            <option value="dracula" <?php if($theme=='dracula') echo 'selected';?>>dracula</option>
-                            <option value="dreamweaver" <?php if($theme=='dreamweaver') echo 'selected';?>>dreamweaver</option>
-                            <option value="eclipse" <?php if($theme=='eclipse') echo 'selected';?>>eclipse</option>
-                            <option value="github" <?php if($theme=='github') echo 'selected';?>>github</option>
-                            <option value="gob" <?php if($theme=='gob') echo 'selected';?>>gob</option>
-                            <option value="gruvbox" <?php if($theme=='gruvbox') echo 'selected';?>>gruvbox</option>
-                            <option value="idle_fingers" <?php if($theme=='idle_fingers') echo 'selected';?>>idle_fingers</option>
-                            <option value="iplastic" <?php if($theme=='iplastic') echo 'selected';?>>iplastic</option>
-                            <option value="katzenmilch" <?php if($theme=='katzenmilch') echo 'selected';?>>katzenmilch</option>
-                            <option value="kr_theme" <?php if($theme=='kr_theme') echo 'selected';?>>kr_theme</option>
-                            <option value="kuroir" <?php if($theme=='kuroir') echo 'selected';?>>kuroir</option>
-                            <option value="merbivore_soft" <?php if($theme=='merbivore_soft') echo 'selected';?>>merbivore_soft</option>
-                            <option value="merbivore" <?php if($theme=='merbivore') echo 'selected';?>>merbivore</option>
-                            <option value="mono_industrial" <?php if($theme=='mono_industrial') echo 'selected';?>>mono_industrial</option>
-                            <option value="monokai" <?php if($theme=='monokai') echo 'selected';?>>monokai</option>
-                            <option value="pastel_on_dark" <?php if($theme=='pastel_on_dark') echo 'selected';?>>pastel_on_dark</option>
-                            <option value="solarized_dark" <?php if($theme=='solarized_dark') echo 'selected';?>>solarized_dark</option>
-                            <option value="solarized_light" <?php if($theme=='solarized_light') echo 'selected';?>>solarized_light</option>
-                            <option value="sqlserver" <?php if($theme=='sqlserver') echo 'selected';?>>sqlserver</option>
-                            <option value="terminal" <?php if($theme=='terminal') echo 'selected';?>>terminal</option>
-                            <option value="textmate" <?php if($theme=='textmate') echo 'selected';?>>textmate</option>
-                            <option value="tomorrow_night_blue" <?php if($theme=='tomorrow_night_blue') echo 'selected';?>>tomorrow_night_blue</option>
-                            <option value="tomorrow_night_bright" <?php if($theme=='tomorrow_night_bright') echo 'selected';?>>tomorrow_night_bright</option>
-                            <option value="tomorrow_night_eighties" <?php if($theme=='tomorrow_night_eighties') echo 'selected';?>>tomorrow_night_eighties</option>
-                            <option value="tomorrow_night" <?php if($theme=='tomorrow_night') echo 'selected';?>>tomorrow_night</option>
-                            <option value="tomorrow" <?php if($theme=='tomorrow') echo 'selected';?>>tomorrow</option>
-                            <option value="twilight" <?php if($theme=='twilight') echo 'selected';?>>twilight</option>
-                            <option value="vibrant_ink" <?php if($theme=='vibrant_ink') echo 'selected';?>>vibrant_ink</option>
-                            <option value="xcode" <?php if($theme=='xcode') echo 'selected';?>>xcode</option>
-                        </select>
-                        <br/>
-                        <label for="font_size" class="fileTreeLabel">Font Size</label>
-                        <select name="font_size" id="font_size">
-                            <?php foreach(['10px','11px','12px','13px','14px','15px','16px','17px','18px','20px','22px','25px','30px','35px','40px'] as $font){?>
-                                <option value="<?php echo $font;?>" <?php if($font_size==$font) echo 'selected';?>><?php echo $font;?></option>
-                            <?php }?>
-                        </select>
-                        <br/>
-                        <label for="wrap_text" class="fileTreeLabel">Wrap Text</label>
-                        <select name="wrap_text" id="wrap_text">
-                            <option value="true" <?php if($wrap_text==true) echo 'selected';?>>Yes</option>
-                            <option value="false" <?php if($wrap_text==false) echo 'selected';?>>No</option>
-                        </select>
-                        <br/>
-                        <label for="soft_tab" class="fileTreeLabel">Soft Tab</label>
-                        <input type="number" name="soft_tab_size" id="soft_tab_size" value="<?php echo $soft_tab_size;?>" style="width: 50px">
-                        <select name="soft_tab" id="soft_tab">
-                            <option value="true" <?php if($soft_tab==true) echo 'selected';?>>Yes</option>
-                            <option value="false" <?php if($soft_tab==false) echo 'selected';?>>No</option>
-                        </select>
-                        
-                        <br/>
-                        <label for="show_invisible" class="fileTreeLabel">Show Invisible</label>
-                        <select name="show_invisible" id="show_invisible">
-                            <option value="true" <?php if($show_invisible==true) echo 'selected';?>>Yes</option>
-                            <option value="false" <?php if($show_invisible==false) echo 'selected';?>>No</option>
-                        </select>
-
-                        <br/>
-                        <label for="show_gutter" class="fileTreeLabel">Show Line Number</label>
-                        <select name="show_gutter" id="show_gutter">
-                            <option value="true" <?php if($show_gutter==true) echo 'selected';?>>Yes</option>
-                            <option value="false" <?php if($show_gutter==false) echo 'selected';?>>No</option>
-                        </select>
-
-                        <br/>
-                        <label for="show_indent" class="fileTreeLabel">Show Indent Guides</label>
-                        <select name="show_indent" id="show_indent">
-                            <option value="true" <?php if($show_indent==true) echo 'selected';?>>Yes</option>
-                            <option value="false" <?php if($show_indent==false) echo 'selected';?>>No</option>
-                        </select>
-                    </div>
-
                     <div id="fileTree"></div>
                 </div>
             </div>
@@ -182,7 +98,113 @@ else $show_indent = true;
                           echo '<tr><th>Server Timezone </th><td>' . date_default_timezone_get().'</td></tr>';
                           echo '<tr><th>Server Time </th><td>' .strftime("%A, %B %d, %Y, %X %Z").'</td></tr>';
                     ?>
-                    </table>           
+                    </table>
+                    <a class="btn btn-danger btncloseDiv">Close</a>        
+                </div>
+                <div id="settings" style="display: none;">
+                    <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
+                        <tr>
+                            <th>Theme</th>
+                            <td>
+                                <select name="theme" id="theme">
+                                    <option value="ambiance" <?php if($theme=='ambiance') echo 'selected';?>>ambiance</option>
+                                    <option value="chaos" <?php if($theme=='chaos') echo 'selected';?>>chaos</option>
+                                    <option value="chrome" <?php if($theme=='chrome') echo 'selected';?>>chrome</option>
+                                    <option value="clouds_midnight" <?php if($theme=='clouds_midnight') echo 'selected';?>>clouds_midnight</option>
+                                    <option value="clouds" <?php if($theme=='clouds') echo 'selected';?>>clouds</option>
+                                    <option value="cobalt" <?php if($theme=='cobalt') echo 'selected';?>>cobalt</option>
+                                    <option value="crimson_editor" <?php if($theme=='crimson_editor') echo 'selected';?>>crimson_editor</option>
+                                    <option value="dawn" <?php if($theme=='dawn') echo 'selected';?>>dawn</option>
+                                    <option value="dracula" <?php if($theme=='dracula') echo 'selected';?>>dracula</option>
+                                    <option value="dreamweaver" <?php if($theme=='dreamweaver') echo 'selected';?>>dreamweaver</option>
+                                    <option value="eclipse" <?php if($theme=='eclipse') echo 'selected';?>>eclipse</option>
+                                    <option value="github" <?php if($theme=='github') echo 'selected';?>>github</option>
+                                    <option value="gob" <?php if($theme=='gob') echo 'selected';?>>gob</option>
+                                    <option value="gruvbox" <?php if($theme=='gruvbox') echo 'selected';?>>gruvbox</option>
+                                    <option value="idle_fingers" <?php if($theme=='idle_fingers') echo 'selected';?>>idle_fingers</option>
+                                    <option value="iplastic" <?php if($theme=='iplastic') echo 'selected';?>>iplastic</option>
+                                    <option value="katzenmilch" <?php if($theme=='katzenmilch') echo 'selected';?>>katzenmilch</option>
+                                    <option value="kr_theme" <?php if($theme=='kr_theme') echo 'selected';?>>kr_theme</option>
+                                    <option value="kuroir" <?php if($theme=='kuroir') echo 'selected';?>>kuroir</option>
+                                    <option value="merbivore_soft" <?php if($theme=='merbivore_soft') echo 'selected';?>>merbivore_soft</option>
+                                    <option value="merbivore" <?php if($theme=='merbivore') echo 'selected';?>>merbivore</option>
+                                    <option value="mono_industrial" <?php if($theme=='mono_industrial') echo 'selected';?>>mono_industrial</option>
+                                    <option value="monokai" <?php if($theme=='monokai') echo 'selected';?>>monokai</option>
+                                    <option value="pastel_on_dark" <?php if($theme=='pastel_on_dark') echo 'selected';?>>pastel_on_dark</option>
+                                    <option value="solarized_dark" <?php if($theme=='solarized_dark') echo 'selected';?>>solarized_dark</option>
+                                    <option value="solarized_light" <?php if($theme=='solarized_light') echo 'selected';?>>solarized_light</option>
+                                    <option value="sqlserver" <?php if($theme=='sqlserver') echo 'selected';?>>sqlserver</option>
+                                    <option value="terminal" <?php if($theme=='terminal') echo 'selected';?>>terminal</option>
+                                    <option value="textmate" <?php if($theme=='textmate') echo 'selected';?>>textmate</option>
+                                    <option value="tomorrow_night_blue" <?php if($theme=='tomorrow_night_blue') echo 'selected';?>>tomorrow_night_blue</option>
+                                    <option value="tomorrow_night_bright" <?php if($theme=='tomorrow_night_bright') echo 'selected';?>>tomorrow_night_bright</option>
+                                    <option value="tomorrow_night_eighties" <?php if($theme=='tomorrow_night_eighties') echo 'selected';?>>tomorrow_night_eighties</option>
+                                    <option value="tomorrow_night" <?php if($theme=='tomorrow_night') echo 'selected';?>>tomorrow_night</option>
+                                    <option value="tomorrow" <?php if($theme=='tomorrow') echo 'selected';?>>tomorrow</option>
+                                    <option value="twilight" <?php if($theme=='twilight') echo 'selected';?>>twilight</option>
+                                    <option value="vibrant_ink" <?php if($theme=='vibrant_ink') echo 'selected';?>>vibrant_ink</option>
+                                    <option value="xcode" <?php if($theme=='xcode') echo 'selected';?>>xcode</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Font Size</th>
+                            <td>
+                                <select name="font_size" id="font_size">
+                                    <?php foreach(['10px','11px','12px','13px','14px','15px','16px','17px','18px','20px','22px','25px','30px','35px','40px'] as $font){?>
+                                    <option value="<?php echo $font;?>" <?php if($font_size==$font) echo 'selected';?>><?php echo $font;?></option>
+                                    <?php }?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Wrap Text</th>
+                            <td>
+                                <select name="wrap_text" id="wrap_text">
+                                    <option value="true" <?php if($wrap_text==true) echo 'selected';?>>Yes</option>
+                                    <option value="false" <?php if($wrap_text==false) echo 'selected';?>>No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Soft Tab</th>
+                            <td>
+                                <input type="number" name="soft_tab_size" id="soft_tab_size" value="<?php echo $soft_tab_size;?>" style="width: 50px">
+                                <select name="soft_tab" id="soft_tab">
+                                    <option value="true" <?php if($soft_tab==true) echo 'selected';?>>Yes</option>
+                                    <option value="false" <?php if($soft_tab==false) echo 'selected';?>>No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Show Invisible</th>
+                            <td>
+                                <select name="show_invisible" id="show_invisible">
+                                    <option value="true" <?php if($show_invisible==true) echo 'selected';?>>Yes</option>
+                                    <option value="false" <?php if($show_invisible==false) echo 'selected';?>>No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Show Line Number</th>
+                            <td>
+                                <select name="show_gutter" id="show_gutter">
+                                    <option value="true" <?php if($show_gutter==true) echo 'selected';?>>Yes</option>
+                                    <option value="false" <?php if($show_gutter==false) echo 'selected';?>>No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Show Indent Guides</th>
+                            <td>
+                                <select name="show_indent" id="show_indent">
+                                    <option value="true" <?php if($show_indent==true) echo 'selected';?>>Yes</option>
+                                    <option value="false" <?php if($show_indent==false) echo 'selected';?>>No</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <a class="btn btn-danger btncloseDiv">Close</a>
                 </div>
                 <div id="uploader" style="display: none;">
                     <form id="fileupload" action="./uploadHandler.php" method="POST" enctype="multipart/form-data">

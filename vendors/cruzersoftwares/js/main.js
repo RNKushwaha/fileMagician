@@ -1,5 +1,4 @@
 function number_format_js (number, decimals, dec_point, thousands_sep) {
-    // Strip all characters but numerical ones.
     number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -40,6 +39,31 @@ function formatSizeUnits($bytes){
     return $bytes;
 }
 
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
+}
+
 ;$(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
@@ -54,16 +78,6 @@ function formatSizeUnits($bytes){
     }).bind('fileuploaddone', function(e, data) {
         $.blueimp.fileupload.prototype.options.add.call(this, e, data);
     });
-
-    // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
-        'option',
-        'redirect',
-        window.location.href.replace(
-            /\/[^\/]*$/,
-            '/cors/result.html?%s'
-        )
-    );
 
     $('#fileupload').addClass('fileupload-processing');
 
@@ -96,6 +110,7 @@ function formatSizeUnits($bytes){
     }
 
     $('#settingsHandler').on('click',function(){
+        $('#info').hide();
         $('#settings').toggle();
     });
     $('#refreshHandler').on('click',function(){
@@ -103,7 +118,11 @@ function formatSizeUnits($bytes){
     });
 
     $('#infoHandler').on('click',function(){
+        $('#settings').hide();
         $('#info').toggle();
+    });
+    $('.btncloseDiv').on('click',function(){
+        $(this).parent('div').hide();
     });
 
     $('#theme').on('change',function(){
@@ -165,31 +184,6 @@ function formatSizeUnits($bytes){
         editor.setDisplayIndentGuides(show_indent);
         setCookie('show_indent',show_indent,30);
     });
-
-    function setCookie(name,value,days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-    }
-
-    function getCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for(var i=0;i < ca.length;i++) {
-            var c = ca[i];
-            while (c.charAt(0)==' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-        }
-        return null;
-    }
-
-    function eraseCookie(name) {   
-        document.cookie = name+'=; Max-Age=-99999999;';  
-    }
 
     $configureEditor = function(fileID, fileExt, fileContent ){
         var editor = (function() {
@@ -258,19 +252,37 @@ function formatSizeUnits($bytes){
             switch(fileExt){
                 case 'text': editor.getSession().setMode("ace/mode/text");break;
                 case 'txt':editor.getSession().setMode("ace/mode/text");break;
-                case 'yml':editor.getSession().setMode("ace/mode/text");break;
                 case 'md':editor.getSession().setMode("ace/mode/markdown");break;
-                case 'htaccess':editor.getSession().setMode("ace/mode/text");break;
-                case 'log':editor.getSession().setMode("ace/mode/text");break;
-                case 'sql':editor.getSession().setMode("ace/mode/sql");break;
-                case 'php': editor.getSession().setMode("ace/mode/php");break;
+                case 'ts': editor.getSession().setMode("ace/mode/typescript");break;
                 case 'js': editor.getSession().setMode("ace/mode/javascript");break;
                 case 'json':editor.getSession().setMode("ace/mode/json");break;
-                case 'less':editor.getSession().setMode("ace/mode/less");break;
+                case 'css':editor.getSession().setMode("ace/mode/css");break;
                 case 'scss':editor.getSession().setMode("ace/mode/scss");break;
                 case 'sass':editor.getSession().setMode("ace/mode/sass");break;
-                case 'css':editor.getSession().setMode("ace/mode/css");break;
+                case 'less':editor.getSession().setMode("ace/mode/less");break;
                 case 'html': editor.getSession().setMode("ace/mode/html");break;
+                case 'htm': editor.getSession().setMode("ace/mode/html");break;
+                case 'xml': editor.getSession().setMode("ace/mode/xml");break;
+                case 'yml':editor.getSession().setMode("ace/mode/text");break;
+                case 'yaml':editor.getSession().setMode("ace/mode/yaml");break;
+                case 'c':editor.getSession().setMode("ace/mode/c_cpp");break;
+                case 'cpp': editor.getSession().setMode("ace/mode/c_cpp");break;
+                case 'h':editor.getSession().setMode("ace/mode/h");break;
+                case 'sql':editor.getSession().setMode("ace/mode/sql");break;
+                case 'pgsql':editor.getSession().setMode("ace/mode/pgsql");break;
+                case 'log':editor.getSession().setMode("ace/mode/text");break;
+                case 'py':editor.getSession().setMode("ace/mode/python");break;
+                case 'rb':editor.getSession().setMode("ace/mode/ruby");break;
+                case 'pl':editor.getSession().setMode("ace/mode/perl");break;
+                case 'asp':editor.getSession().setMode("ace/mode/csharp");break;
+                case 'aspx': editor.getSession().setMode("ace/mode/csharp");break;
+                case 'java':editor.getSession().setMode("ace/mode/java");break;
+                case 'htaccess':editor.getSession().setMode("ace/mode/apache_conf");break;
+                case 'sh':editor.getSession().setMode("ace/mode/batchfile");break;
+                case 'php': editor.getSession().setMode("ace/mode/php");break;
+                case 'blade': editor.getSession().setMode("ace/mode/php_laravel_blade");break;
+                case 'tmpl': editor.getSession().setMode("ace/mode/text");break;
+                case 'twig': editor.getSession().setMode("ace/mode/twig");break;
             }
 
             editor.session.setValue(fileContent);
@@ -290,25 +302,33 @@ function formatSizeUnits($bytes){
         name: 'save',
         bindKey: {win: "Ctrl-S", "mac": "Cmd-S"},
         exec: function(editor) {
+            $('#msg').html(`<div class="alert alert-info fade in show alert-dismissible" style="margin-top:18px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                <strong>Info!</strong> The file is being saved!
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                </div>
+                            </div>`).show();
+                            
             $.post('handler.php?action=save_content', { 'id' : fileID, 'content' : editor.session.getValue() })
             .done(function (d) {
                 var res = $.parseJSON(d);
                 if(res.success!== undefined){
-                    $('#msg').html(`<div class="alert alert-success fade in alert-dismissible" style="margin-top:18px;">
+                    $('#msg').html(`<div class="alert alert-success fade in show alert-dismissible" style="margin-top:18px;">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
                                         <strong>Success!</strong> The file has been saved!
                                     </div>`).show().delay(2000).fadeOut(100);
                 } else{
                     var error = '';
                     if(res.error!==undefined) error = '<br/>'+res.error;
-                    $('#msg').html(`<div class="alert alert-warning fade in alert-dismissible" style="margin-top:18px;">
+                    $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
                                     <strong>Error!</strong> The file could not be saved! ${error}
                                 </div>`).show().delay(2000).fadeOut(100);
                 }
             })
             .fail(function () {
-                $('#msg').html(`<div class="alert alert-warning fade in alert-dismissible" style="margin-top:18px;">
+                $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
                                     <strong>Error!</strong> The file could not be saved!
                                 </div>`).show().delay(2000).fadeOut(100);
@@ -468,21 +488,32 @@ function formatSizeUnits($bytes){
         })
         .on('changed.jstree', function (e, data) {
             if(data && data.selected && data.selected.length) {
+                $('#msg').html(`<div class="alert alert-info fade in show alert-dismissible" style="margin-top:18px;">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                     Loading..
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                    </div>
+                                </div>`).show();
+                                
                 if(data.node.type=='default'){
                     $('#directory').val(data.node.id);
                     $('#uploader').show();
                     showFolderContents();
                     $('#editor,#imageEditor,#info,#editImage,#docViewer').hide();
+                    $('#msg').hide();
                     return;
                 }
 
                 var fileid = data.selected.join(':');
+
                 $.get('handler.php?operation=get_content&id=' + data.selected.join(':'), function (d) {
                     if(d && typeof d.type !== 'undefined') {
                         switch(d.type) {
-                            case 'txt':
                             case 'text':
+                            case 'txt':
                             case 'md':
+                            case 'ts':
                             case 'js':
                             case 'json':
                             case 'css':
@@ -493,19 +524,25 @@ function formatSizeUnits($bytes){
                             case 'htm':
                             case 'xml':
                             case 'yml':
+                            case 'yaml':
                             case 'c':
                             case 'cpp':
                             case 'h':
                             case 'sql':
+                            case 'pgsql':
                             case 'log':
                             case 'py':
                             case 'rb':
+                            case 'pl':
                             case 'asp':
                             case 'aspx':
                             case 'java':
                             case 'htaccess':
+                            case 'sh':
                             case 'php':
+                            case 'blade':
                             case 'tmpl':
+                            case 'twig':
                                 $('#editor').show();
                                 $('#uploader,#imageEditor,#info,#docViewer').hide();
                                 $configureEditor(fileid, d.type, d.content);
@@ -571,9 +608,13 @@ function formatSizeUnits($bytes){
                                 $('#metadata label[for=contains],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#editImage').hide();
                                 break;
                             default:
-                                $('#data .default').html(d.content).show();
+                                $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                            <strong>Warning!</strong> The file format is not supported yet!
+                                        </div>`).show();
                                 break;
                         }
+                        $('#msg').delay(2000).fadeOut(100);
                     } else{
                         console.log('folder');
                     }
