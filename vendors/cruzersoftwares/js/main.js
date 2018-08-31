@@ -100,8 +100,7 @@ function eraseCookie(name) {
             $('#metadata #updatePermission').val(result.info.permission);
             $('#metadata label[for=created] span').text(result.info.created);
             $('#metadata label[for=lastmodified] span').text(result.info.modified);
-            $('#metadata label[for=lastaccessed] span').text(result.info.accessed);
-            $('#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width]').hide();
+            $('#metadata label[for=line],#metadata label[for=dimension]').hide();
             $('#metadata label[for=contains] span').text(result.info.folderCount+' folders & '+result.info.totalFiles+' files');
             $('#metadata label[for=contains]').show();
             $('#metadata label[for=path],#editImage,#docViewer').hide();
@@ -288,14 +287,14 @@ function eraseCookie(name) {
             editor.session.setValue(fileContent);
             editor.clearSelection();
             editor.focus();
+            var onlyFileName = fileID.split('\\').pop().split('/').pop();
+            $('#newTab').before('<li class="nav-item"> <a class="nav-link active" id="' + fileID + '-tab" title="' + fileID + '" data-toggle="tab" role="tab" aria-controls="' + fileID + '" aria-selected="true">' + onlyFileName + '</a> </li>'); 
             return editor;
     })();
 
     editor.session.selection.on('changeCursor', function(e) {
         var meta = editor.selection.getCursor();
-        $('#metadata label[for=totallines] span').text(editor.session.getLength());
         $('#metadata label[for=line] span').text((meta.row+1)+':'+meta.column);
-        // $('#metadata label[for=character] span').text(meta.column);
     });
 
     editor.commands.addCommand({
@@ -334,6 +333,10 @@ function eraseCookie(name) {
                                 </div>`).show().delay(2000).fadeOut(100);
             });
         }
+    });
+
+    editor.session.on('change', function (delta) {
+        // delta.start, delta.end, delta.lines, delta.action
     });
 
     // set to false to prevent using worker, which is needed to run this from local html file due to browser security restritions
@@ -546,15 +549,13 @@ function eraseCookie(name) {
                                 $('#editor').show();
                                 $('#uploader,#imageEditor,#info,#docViewer').hide();
                                 $configureEditor(fileid, d.type, d.content);
-                                // $('#metadata label[for=path] span').text(d.info.path);
                                 $('#metadata label[for=size] span').text(d.info.size);
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
                                 $('#metadata label[for=lastmodified] span').text(d.info.modified);
-                                $('#metadata label[for=lastaccessed] span').text(d.info.accessed);
-                                $('#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character]').show();
-                                $('#metadata label[for=contains],#metadata label[for=height],#metadata label[for=width],#editImage').hide();
+                                $('#metadata label[for=line]').show();
+                                $('#metadata label[for=contains],#metadata label[for=dimension],#editImage').hide();
                                 break;
                             case 'png':
                             case 'jpg':
@@ -569,17 +570,15 @@ function eraseCookie(name) {
                                 $('#editImage').attr('href','imageEditor.php?image='+d.info.hostUrl+d.content).show();
                                 $('#uploader,#editor,#info,#docViewer').hide();
                                 $('#imageEditor p').remove();
-                                $('#metadata label[for=height] span').text(d.info.height);
-                                $('#metadata label[for=width] span').text(d.info.width);
+                                $('#metadata label[for=dimension] span').text(d.info.width+' X '+d.info.height);
                                 // $('#metadata label[for=path] span').text(d.info.path);
                                 $('#metadata label[for=size] span').text(d.info.size);
                                 $('#metadata label[for=permission] span').text(d.info.permissionFull);
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
                                 $('#metadata label[for=lastmodified] span').text(d.info.modified);
-                                $('#metadata label[for=lastaccessed] span').text(d.info.accessed);
-                                $('#metadata label[for=height],#metadata label[for=width]').show();
-                                $('#metadata label[for=contains],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character]').hide();
+                                $('#metadata label[for=dimension]').show();
+                                $('#metadata label[for=contains],#metadata label[for=line]').hide();
                                 break;
                             case 'zip':
                             case 'ZIP':
@@ -604,8 +603,7 @@ function eraseCookie(name) {
                                 $('#metadata #updatePermission').val(d.info.permission);
                                 $('#metadata label[for=created] span').text(d.info.created);
                                 $('#metadata label[for=lastmodified] span').text(d.info.modified);
-                                $('#metadata label[for=lastaccessed] span').text(d.info.accessed);
-                                $('#metadata label[for=contains],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#metadata label[for=height],#metadata label[for=width],#metadata label[for=totallines],#metadata label[for=line],#metadata label[for=character],#editImage').hide();
+                                $('#metadata label[for=contains],#metadata label[for=line],#metadata label[for=dimension],#metadata label[for=line],#editImage').hide();
                                 break;
                             default:
                                 $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
