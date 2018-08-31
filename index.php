@@ -35,23 +35,19 @@ else $show_indent = true;
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="vendors/cruzersoftwares/css/style.css" />
+        <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
     </head>
     
     <body>
     <div id="msg"></div>
     <div class="container-fluid">
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a class="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/">fileMagician</a>
-          <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-          <a id="infoHandler" class="hi-icon-wrap hi-icon-effect-6 icon_custom"><i class="hi-icon hi-icon-archive"></i></a>
-            <a id="settingsHandler" class="hi-icon-wrap hi-icon-effect-6 icon_custom"><i class="hi-icon hi-icon-cog"></i></a>
-            <a id="refreshHandler" class="hi-icon-wrap hi-icon-effect-6 icon_custom"><i class="hi-icon hi-icon-refresh"></i></a>
-
-          <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-              <a class="nav-link" href="logout.php">Sign out</a>
-            </li>
-          </ul>
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow col-sm-3 col-md-2 mr-0">
+            <a class="navbar-brand" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style="display:none">
+            <a id="infoHandler" class="icon_custom"><i class="fas fa-info-circle fa-lg"></i></a>
+            <a id="settingsHandler" class="icon_custom"><i class="fas fa-cog fa-lg"></i></a>
+            <a id="refreshHandler" class="icon_custom"><i class="fas fa-sync-alt fa-lg"></i></a>
+            <a href="logout.php" id="refreshHandler" class="icon_custom"><i class="fas fa-sign-out-alt fa-lg"></i></a>
         </nav>
 
        <div class="row">
@@ -63,28 +59,37 @@ else $show_indent = true;
             </div>
           </nav>
 
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" id="data">
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding-top:5px;padding-left:0px;">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center" id="data">
                     <div id="metadata">
                         <!-- <label for="path">Path: <span></span></label> -->
                         <label for="size">Size: <span></span></label>
-                        <label for="height">Height: <span></span></label>
-                        <label for="width">Width: <span></span></label>
+                        <label for="dimension">Dimension: <span></span></label>
                         <label for="contains">Contains: <span></span></label>
                         <label for="created">Created: <span></span></label>
                         <label for="lastmodified">Modified: <span></span></label>
-                        <!-- <label for="lastaccessed">Accessed: <span></span></label> -->
-                        <!-- <label for="totallines">Total Lines: <span></span></label> -->
                         <label for="line">Line: <span></span></label>
-                        <!-- <label for="character">Character: <span></span></label> -->
                         <label for="permission">Permission: <span></span>
                             <input type="text" class="input input-sm " value="" required="required" id="updatePermission">
-                            <button class="btn btn-primary btn-sm" id="updatePermissionBtn">Save</button>
+                            <a href="" id="updatePermissionBtn"><i class="fas fa-check-circle fa-lg"></i></a>
                         </label>
                         <a href ="imageEditor.php?image=" target="_blank" class="btn btn-primary btn-sm" id="editImage">Edit Image</a>
                     </div>
                 </div>
-                
+                <div id="tabs">
+                   <ul class="nav nav-tabs" id="filesTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                        </li>
+                        <li class="nav-item" id="newTab">
+                            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="contact" aria-selected="false">New</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"></div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+                    </div>
+                </div>
                 <div id="editor" class="" spellcheck="true"></div>
                 <div id="info" style="display: none;">
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
@@ -101,7 +106,7 @@ else $show_indent = true;
                     </table>
                     <a class="btn btn-danger btncloseDiv">Close</a>        
                 </div>
-                <div id="settings" style="display: none;">
+                <div id="settings" style="display: none;"> 
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
                         <tr>
                             <th>Theme</th>
@@ -360,6 +365,6 @@ else $show_indent = true;
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-video.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="vendors/cruzersoftwares/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="vendors/cruzersoftwares/js/main.js" charset="utf-8"></script>    
 </body>
 </html>

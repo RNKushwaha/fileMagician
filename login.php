@@ -66,11 +66,6 @@
         <label for="inputPassword">Password</label>
       </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> I Accept the <a href="https://github.com/CruzerSoftwares/fileMagician/wiki/Terms-&-Conditions" target="_blank">Terms & Conditions</a> of the Software
-        </label>
-      </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit" name="signin" value="y">Sign in</button>
       <p class="mt-5 mb-3 text-muted text-center">&copy; <?php echo date('Y');?></p>
     </form>
