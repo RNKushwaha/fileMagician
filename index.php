@@ -41,13 +41,14 @@ else $show_indent = true;
     <body>
     <div id="msg"></div>
     <div class="container-fluid">
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow col-sm-3 col-md-2 mr-0">
-            <a class="navbar-brand" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
+        <nav class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-3 col-md-2 mr-0">
+            <a class="navbar-brand1" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
             <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style="display:none">
             <a id="infoHandler" class="icon_custom"><i class="fas fa-info-circle fa-lg"></i></a>
             <a id="settingsHandler" class="icon_custom"><i class="fas fa-cog fa-lg"></i></a>
             <a id="refreshHandler" class="icon_custom"><i class="fas fa-sync-alt fa-lg"></i></a>
             <a href="logout.php" id="refreshHandler" class="icon_custom"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+            <a>&nbsp;</a>
         </nav>
 
        <div class="row">
@@ -78,9 +79,6 @@ else $show_indent = true;
                 </div>
                 <div id="tabs">
                    <ul class="nav nav-tabs" id="filesTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                        </li>
                         <li class="nav-item" id="newTab">
                             <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="contact" aria-selected="false">New</a>
                         </li>

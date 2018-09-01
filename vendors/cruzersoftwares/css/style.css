@@ -43,3 +43,8 @@ ul.jstree-contextmenu{z-index: 999;}
 #settingsHandler,.btncloseDiv{cursor: pointer;}
 #updatePermission{width: 50px;padding: 0;height: 25px;}
 #updatePermissionBtn,#editImage{padding:0 5px;}
+.navbar-brand1{height: 30px;font-weight: bold;
+    line-height: 30px;
+    padding: 2px 5px;
+    letter-spacing: 1px;
+    font-family: fantasy;}
