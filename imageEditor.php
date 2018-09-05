@@ -1,4 +1,5 @@
-<?php require_once 'init.php';?>
+<?php define('_ACCESS_OK', true);
+      require_once 'init.php';?>
 <!DOCTYPE html>
 <html>
     <head>

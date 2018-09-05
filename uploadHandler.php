@@ -1,4 +1,4 @@
-<?php
+<?php define('_ACCESS_OK', true);
 /*
  * jQuery File Upload Plugin PHP Class
  * https://github.com/blueimp/jQuery-File-Upload

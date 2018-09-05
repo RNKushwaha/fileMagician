@@ -1,4 +1,4 @@
-<?php 
+<?php define('_ACCESS_OK', true);
 require_once 'init.php';
 //get cookie to make form selected
 if(isset($_COOKIE['theme'])) $theme = $_COOKIE['theme'];
@@ -33,8 +33,8 @@ else $show_indent = true;
         <meta name="description" content="File manager, Online Editor, Image crop, Resize, filter and document viewer">
         <meta name="author" content="RN Kushwaha">
         <title>fileMagician: Adding Awesomeness to the web</title>
-        <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="vendors/cruzersoftwares/css/style.css" />
+        <link rel="stylesheet" href="<?php loadStaticResource('vendors/bootstrap/css/bootstrap.min.css');?>">
+        <link rel="stylesheet" type="text/css" href="<?php loadStaticResource('vendors/cruzersoftwares/css/style.css');?>" />
         <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
     </head>
     
@@ -79,16 +79,15 @@ else $show_indent = true;
                 </div>
                 <div id="tabs">
                    <ul class="nav nav-tabs" id="filesTab" role="tablist">
-                        <li class="nav-item" id="newTab">
-                            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="contact" aria-selected="false">New</a>
+                        <li class="nav-item" id="newTab" style="margin-left:10px">
+                            <a class="nav-link" id="new-tab" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"></div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+                        
                     </div>
                 </div>
-                <div id="editor" class="" spellcheck="true"></div>
+                <div id="editor" class="" spellcheck="true" style="display:none"></div>
                 <div id="info" style="display: none;">
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
                     <?php echo '<tr><th>Browser </th><td>'.$_SERVER['HTTP_USER_AGENT']."</td></tr>";
@@ -352,8 +351,8 @@ else $show_indent = true;
 
     <script type="text/javascript" src="vendors/blueimp/js/vendor/jquery.ui.widget.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/tmpl.min.js" charset="utf-8"></script>
-    <!-- <script type="text/javascript" src="vendors/blueimp/js/load-image.all.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="vendors/blueimp/js/canvas-to-blob.min.js" charset="utf-8"></script> -->
+    <script type="text/javascript" src="vendors/blueimp/js/load-image.all.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="vendors/blueimp/js/canvas-to-blob.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.blueimp-gallery.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.iframe-transport.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload.js" charset="utf-8"></script>
@@ -363,6 +362,6 @@ else $show_indent = true;
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-video.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="vendors/cruzersoftwares/js/main.js" charset="utf-8"></script>    
+    <script type="text/javascript" src="<?php loadStaticResource('vendors/cruzersoftwares/js/main.js');?>" charset="utf-8"></script>    
 </body>
 </html>
