@@ -110,6 +110,14 @@ function eraseCookie(name) {
             });
         }
 
+        $(document).on('click', '.delete', function(e){
+            if(!confirm('Are you sure want to delete this file?')){
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+
         $('#settingsHandler').on('click',function(){
             $('#info').hide();
             $('#settings').toggle();

@@ -48,3 +48,6 @@ ul.jstree-contextmenu{z-index: 999;}
 .sidebar{padding: 22px 0 0}
 .nav-tabs .nav-link:focus{outline: none!important}
 .svg-inline--fa.unsaved{color:red;}
+.table .files td, .table .files th{padding: 2px 5px;}
+.table .files .btn{border:none;background: none;}
+.table .files .btn:hover,.table .files .btn:focus,.table .files .btn:active,.table .files .btn:active:focus{color: blue;padding: 2px;}
