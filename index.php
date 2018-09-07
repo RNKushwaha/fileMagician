@@ -87,7 +87,6 @@ else $show_indent = true;
                         
                     </div>
                 </div>
-                <div id="editor" class="" spellcheck="true" style="display:none"></div>
                 <div id="info" style="display: none;">
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
                     <?php echo '<tr><th>Browser </th><td>'.$_SERVER['HTTP_USER_AGENT']."</td></tr>";
@@ -218,14 +217,7 @@ else $show_indent = true;
                                     <span>Add files...</span>
                                     <input type="file" name="files[]" multiple>
                                 </span>
-                                <button type="submit" class="btn btn-primary start">
-                                    <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Start upload</span>
-                                </button>
-                                <button type="reset" class="btn btn-warning cancel">
-                                    <i class="glyphicon glyphicon-ban-circle"></i>
-                                    <span>Cancel upload</span>
-                                </button>
+                                
                                 <button type="button" class="btn btn-danger delete">
                                     <i class="glyphicon glyphicon-trash"></i>
                                     <span>Delete</span>
@@ -243,7 +235,6 @@ else $show_indent = true;
                         <table role="presentation" class="table table-striped"><tbody class="files" id="fileLists"></tbody></table>
                     </form>
 
-                    <!-- The blueimp Gallery widget -->
                     <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
                         <div class="slides"></div>
                         <h3 class="title"></h3>
@@ -253,10 +244,10 @@ else $show_indent = true;
                         <a class="play-pause"></a>
                         <ol class="indicator"></ol>
                     </div>
-                    <!-- The template to display files available for upload -->
+
                     <script id="template-upload" type="text/x-tmpl">
                     {% for (var i=0, file; file=o.files[i]; i++) { %}
-                        <tr class="template-upload fade">
+                        <tr class="template-upload">
                             <td>
                                 <span class="preview"></span>
                             </td>
@@ -270,11 +261,11 @@ else $show_indent = true;
                             </td>
                             <td>
                                 {% if (!i && !o.options.autoUpload) { %}
-                                    <button class="btn btn-primary start" disabled>
-                                        <i class="glyphicon glyphicon-upload"></i>
-                                        <span>Start</span>
-                                    </button>
-                                {% } %}
+-                                    <button class="btn btn-primary start" disabled>
+-                                        <i class="glyphicon glyphicon-upload"></i>
+-                                        <span>Start</span>
+-                                    </button>
+-                                {% } %}
                                 {% if (!i) { %}
                                     <button class="btn btn-warning cancel">
                                         <i class="glyphicon glyphicon-ban-circle"></i>
@@ -285,10 +276,10 @@ else $show_indent = true;
                         </tr>
                     {% } %}
                     </script>
-                    <!-- The template to display files available for download -->
+
                     <script id="template-download" type="text/x-tmpl">
                     {% for (var i=0, file; file=o.files[i]; i++) { %}
-                        <tr class="template-download fade">
+                        <tr class="template-download">
                             <td>
                                 <span class="preview">
                                     {% if (file.thumbnailUrl) { %}
@@ -304,9 +295,6 @@ else $show_indent = true;
                                         <span>{%=file.name%}</span>
                                     {% } %}
                                 </p>
-                                {% if (file.error) { %}
-                                    <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-                                {% } %}
                             </td>
                             <td>
                                 <span class="size">{%=formatSizeUnits(file.size)%}</span>
@@ -318,11 +306,6 @@ else $show_indent = true;
                                         <span>Delete</span>
                                     </button>
                                     <input type="checkbox" name="delete" value="1" class="toggle">
-                                {% } else { %}
-                                    <button class="btn btn-warning cancel">
-                                        <i class="glyphicon glyphicon-ban-circle"></i>
-                                        <span>Cancel</span>
-                                    </button>
                                 {% } %}
                             </td>
                         </tr>

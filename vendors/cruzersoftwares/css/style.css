@@ -1,4 +1,4 @@
-#editor,#imageEditor,#uploader,#info,#settings,#docViewer{position: absolute;left: 0px;height:90vh;right: 0;top:50px;bottom: 0;padding: 20px}
+#imageEditor,#uploader,#info,#settings,#docViewer{position: absolute;left: 0px;height:100vh;right: 0;top:0px;bottom: 0;padding: 20px}
 .editor{position: absolute;left: 0px;height:90vh;right: 0;top:50px;bottom: 0;padding: 20px}
 #info,#settings{background: #1d1919;z-index: 9999;opacity: 0.8;color: #fff;}
 #fileMleftsidebar #settings{width: auto;display: none;position: absolute; z-index:9999;background: #1d1919;opacity:0.8;padding: 5px 10px;left:0px;}
@@ -7,7 +7,7 @@
 #imageEditor img{max-height: 80vh;max-width: 80vw;}
 #metadata{font-size:12px;display: block; position: fixed; z-index: 99; bottom:0px; right:0px;background: #1d1919;opacity: 0.8;color: #fff;padding: 1px 10px;height: 30px}
 #metadata label span{font-weight: normal;}
-#uploader{overflow: auto}
+#uploader{overflow: auto;left:5px;right:5px;top:5px;bottom:5px;border:2px dashed #666;height:97vh;box-sizing: border-box;}
 #fileMleftsidebar{width: auto;margin-left:15px;border-right: 1px solid #ccc;overflow: auto;font:12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;}
 .fileTreeLabel{color: #fff;float: left;clear: left;line-height: 35px}
 #fileTree{padding-top: 1px;margin-bottom: -45px;}

@@ -71,13 +71,15 @@ function eraseCookie(name) {
             //xhrFields: {withCredentials: true},
             url: 'uploadHandler.php',
             autoLoad: true,
+            autoUpload: true,
             dataType: 'json',
-            disableImageResize: false,
+            maxFileSize: 50000000,//50mb
+            maxNumberOfFiles: 100,
+            disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
             imageMaxWidth: 100,
             imageMaxHeight: 100,
-            imageCrop: true // Force cropped images
-        }).bind('fileuploaddone', function(e, data) {
-            $.blueimp.fileupload.prototype.options.add.call(this, e, data);
+            imageCrop: true
         });
 
         $('#fileupload').addClass('fileupload-processing');
@@ -112,6 +114,7 @@ function eraseCookie(name) {
             $('#info').hide();
             $('#settings').toggle();
         });
+
         $('#refreshHandler').on('click',function(){
             $("#fileTree").jstree("refresh");
         });
@@ -194,7 +197,7 @@ function eraseCookie(name) {
             //move cursor to the previous position
             var editor = ace.edit(tabId);
             editor.focus();
-            //update the meta info
+            //todo: update the meta info
         })
 
         //clean the DOM and editor
@@ -238,6 +241,7 @@ function eraseCookie(name) {
         var getfileName = function(filename){
             return filename.split('\\').pop().split('/').pop();
         };
+
         var getfileNameForId = function(filename){
             var tabId = filename.split('/').join('_');
             return tabId.split('.').join('__');
