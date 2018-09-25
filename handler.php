@@ -103,6 +103,7 @@ class fs
 				case 'blade':
 				case 'tmpl':
 				case 'twig':
+				case 'env':
 					clearstatcache();
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
 					$filesize = filesize( $dir );
@@ -288,20 +289,21 @@ class fs
 				case 'blade':
 				case 'tmpl':
 				case 'twig':
-					$foldersParams = explode('/', $id);
+				case 'env':
+				   	$foldersParams = explode('/', $id);
 					if(count($foldersParams)){
 						$fileToSave = array_pop($foldersParams);
 						$fullDir = implode('/',$foldersParams);
-						if (!is_dir(ROOT.$fullDir) or !is_writable(ROOT.$fullDir)) {
-						    die(json_encode(['error' => 'Folder '.ROOT.$fullDir.' is not writable!']));
+						if (!is_dir(UPLOAD_ROOT.$fullDir) or !is_writable(UPLOAD_ROOT.$fullDir)) {
+						    die(json_encode(['error' => 'Folder '.UPLOAD_ROOT.$fullDir.' is not writable!']));
 						}
 					}
 					
-					if (is_file(ROOT.$id) and !is_writable(ROOT.$id)) {
-						die(json_encode(['error' => 'File '.ROOT.$id.' is not writable!']));
+					if (is_file(UPLOAD_ROOT.$id) and !is_writable(UPLOAD_ROOT.$id)) {
+						die(json_encode(['error' => 'File '.UPLOAD_ROOT.$id.' is not writable!']));
 					}
 
-					file_put_contents(ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.ROOT.$id]));
+					file_put_contents(UPLOAD_ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
 					die(json_encode(['success' => 'File has been saved!']));
 					break;
 				case 'jpg':
