@@ -110,7 +110,7 @@ function eraseCookie(name) {
             });
         }
 
-        $(document).on('click', '.delete', function(e){
+        $(document).on('click', '.deleteFile', function(e){
             if(!confirm('Are you sure want to delete this file?')){
                 e.preventDefault();
                 e.stopPropagation();
