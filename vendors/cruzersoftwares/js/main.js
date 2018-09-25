@@ -353,6 +353,7 @@ function eraseCookie(name) {
                     case 'blade': editor.getSession().setMode("ace/mode/php_laravel_blade"); break;
                     case 'tmpl': editor.getSession().setMode("ace/mode/text"); break;
                     case 'twig': editor.getSession().setMode("ace/mode/twig"); break;
+                    case 'env': editor.getSession().setMode("ace/mode/text"); break;
                 }
 
                 editor.session.setValue(fileContent);
@@ -651,6 +652,7 @@ function eraseCookie(name) {
                                 case 'blade':
                                 case 'tmpl':
                                 case 'twig':
+                                case 'env':
                                     $('#tabs').show();
                                     $('#uploader,#imageEditor,#info,#docViewer').hide();
                                     $configureEditor(fileid, d.type, d.content);
