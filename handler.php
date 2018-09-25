@@ -103,6 +103,7 @@ class fs
 				case 'blade':
 				case 'tmpl':
 				case 'twig':
+				case 'env':
 					clearstatcache();
 					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
 					$filesize = filesize( $dir );
@@ -288,6 +289,7 @@ class fs
 				case 'blade':
 				case 'tmpl':
 				case 'twig':
+				case 'env':
 					$foldersParams = explode('/', $id);
 					if(count($foldersParams)){
 						$fileToSave = array_pop($foldersParams);
