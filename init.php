@@ -3,6 +3,9 @@
 error_reporting(E_ALL | E_STRICT);
 ini_set('error_log', 'errors.log');
 define('ROOT',$_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR);
+$dirs = explode('/', $_SERVER['DOCUMENT_ROOT']);
+array_pop($dirs);
+define('UPLOAD_ROOT', implode('/', $dirs).DIRECTORY_SEPARATOR );
 
 if( !defined('_ACCESS_OK') ){
   header("HTTP/1.0 404 Not Found");
