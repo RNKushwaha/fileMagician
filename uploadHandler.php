@@ -1396,10 +1396,14 @@ class UploadHandler
         
         $totalFiles = array();
         $path = realpath($dir);
-        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path)) as $filename) {
-            if(!in_array($filename->getFileName(),['.','..'])){
-                $totalFiles[] = $filename->getFileName();
+        try{
+            foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path)) as $filename) {
+                if(!in_array($filename->getFileName(),['.','..'])){
+                    $totalFiles[] = $filename->getFileName();
+                }
             }
+        }catch(Exception $e){
+            
         }
        
         $filePer = substr(sprintf('%o', fileperms($dir)), -4);
