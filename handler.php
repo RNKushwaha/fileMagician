@@ -304,7 +304,15 @@ class fs
 					}
                     
                     chmod(UPLOAD_ROOT.$id, 0777);
-					file_put_contents(UPLOAD_ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
+                    try{
+	                    $fp = fopen(UPLOAD_ROOT.$id, 'w');
+						fwrite($fp, $content);
+						fclose($fp);
+					} catch(Exception $e){
+						echo '<pre>'; print_r($e); die;
+						die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
+					}
+					// file_put_contents(UPLOAD_ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
 					chmod(UPLOAD_ROOT.$id, 0644);
 					die(json_encode(['success' => 'File has been saved!']));
 					break;

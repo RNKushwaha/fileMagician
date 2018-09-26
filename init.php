@@ -4,7 +4,11 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('error_log', 'errors.log');
 define('ROOT',$_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR);
 $dirs = explode('/', $_SERVER['DOCUMENT_ROOT']);
-array_pop($dirs);
+
+if(!in_array($_SERVER['HTTP_HOST'], ['localhost','127.0.0.1:8081','127.0.0.1'])){
+	array_pop($dirs);
+}
+
 define('UPLOAD_ROOT', implode('/', $dirs).DIRECTORY_SEPARATOR );
 
 if( !defined('_ACCESS_OK') ){
