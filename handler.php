@@ -299,11 +299,13 @@ class fs
 						}
 					}
 					
-					if (is_file(UPLOAD_ROOT.$id) and !is_writable(UPLOAD_ROOT.$id)) {
+					if (is_file(UPLOAD_ROOT.$id) && !is_writable(UPLOAD_ROOT.$id)){
 						die(json_encode(['error' => 'File '.UPLOAD_ROOT.$id.' is not writable!']));
 					}
-
+                    
+                    chmod(UPLOAD_ROOT.$id, 0777);
 					file_put_contents(UPLOAD_ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
+					chmod(UPLOAD_ROOT.$id, 0644);
 					die(json_encode(['success' => 'File has been saved!']));
 					break;
 				case 'jpg':
