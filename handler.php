@@ -118,7 +118,7 @@ class fs
 						'modified'   => date ("Y-m-d H:i:s", filemtime($dir)),
 						'accessed'   => date ("Y-m-d H:i:s", fileatime($dir)),
 					);
-					$dat['content'] = file_get_contents($dir);
+					$dat['content'] = base64_encode(file_get_contents($dir));
 					break;
 				case 'jpg':
 				case 'jpeg':
@@ -303,17 +303,9 @@ class fs
 						die(json_encode(['error' => 'File '.UPLOAD_ROOT.$id.' is not writable!']));
 					}
                     
-                    chmod(UPLOAD_ROOT.$id, 0777);
-                    try{
-	                    $fp = fopen(UPLOAD_ROOT.$id, 'w');
-						fwrite($fp, $content);
-						fclose($fp);
-					} catch(Exception $e){
-						echo '<pre>'; print_r($e); die;
-						die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
-					}
-					// file_put_contents(UPLOAD_ROOT.$id, $content) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
-					chmod(UPLOAD_ROOT.$id, 0644);
+                    // chmod(UPLOAD_ROOT.$id, 0777);
+					file_put_contents(UPLOAD_ROOT.$id, base64_decode($content)) or die(json_encode(['error' => 'Could not save the file!'.UPLOAD_ROOT.$id]));
+					// chmod(UPLOAD_ROOT.$id, 0644);
 					die(json_encode(['success' => 'File has been saved!']));
 					break;
 				case 'jpg':

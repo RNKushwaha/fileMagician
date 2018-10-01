@@ -35,7 +35,6 @@ else $show_indent = true;
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel="stylesheet" href="<?php loadStaticResource('vendors/bootstrap/css/bootstrap.min.css');?>">
         <link rel="stylesheet" type="text/css" href="<?php loadStaticResource('vendors/cruzersoftwares/css/style.css');?>" />
-        <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
     </head>
     
     <body>
@@ -44,10 +43,11 @@ else $show_indent = true;
         <nav class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-3 col-md-2 mr-0">
             <a class="navbar-brand1" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
             <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style="display:none">
-            <a id="infoHandler" class="icon_custom"><i class="fas fa-info-circle fa-lg"></i></a>
-            <a id="settingsHandler" class="icon_custom"><i class="fas fa-cog fa-lg"></i></a>
-            <a id="refreshHandler" class="icon_custom"><i class="fas fa-sync-alt fa-lg"></i></a>
-            <a href="logout.php" id="refreshHandler" class="icon_custom"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+            <a id="infoHandler" class="icon_custom" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a>
+            <a id="settingsHandler" class="icon_custom" title="Settings"><i class="fas fa-cog fa-lg"></i></a>
+            <a id="refreshHandler" class="icon_custom" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a>
+            <a href="db.php" target="_blank" class="icon_custom" title="Database"><i class="fas fa-database fa-lg"></i></a>
+            <a href="logout.php" id="refreshHandler" class="icon_custom" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a>
             <a>&nbsp;</a>
         </nav>
 
@@ -317,7 +317,7 @@ else $show_indent = true;
           </main>
         </div>
     </div>
-
+    
     <link rel="stylesheet" href="vendors/jstree/themes/default/style.min.css" charset="utf-8"/>
     <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/jstree/jstree.min.js" charset="utf-8"></script>
@@ -344,6 +344,7 @@ else $show_indent = true;
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-video.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<?php loadStaticResource('vendors/cruzersoftwares/js/main.js');?>" charset="utf-8"></script>    
+    <script type="text/javascript" src="<?php loadStaticResource('vendors/cruzersoftwares/js/main.js');?>" charset="utf-8"></script>
+    <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
 </body>
 </html>
