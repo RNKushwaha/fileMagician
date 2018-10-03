@@ -1,5 +1,5 @@
 <?php if(!session_id()) session_start();
-
+    date_default_timezone_set('Asia/Kolkata');
     if(isset($_SESSION['auth'])){
         header('Location: index.php');
         exit();
