@@ -14,7 +14,9 @@ class fs
 		$temp = realpath($path);
 		if(!$temp) { throw new Exception('Path does not exist: ' . $path); }
 		if($this->base && strlen($this->base)) {
-			if(strpos($temp, $this->base) !== 0) { throw new Exception('Path is not inside base ('.$this->base.'): ' . $temp); }
+			if(strpos($temp, $this->base) !== 0) {
+				throw new Exception('Path is not inside base ('.$this->base.'): ' . $temp);
+			}
 		}
 		return $temp;
 	}
@@ -405,6 +407,40 @@ class fs
 		}
 		return array('id' => $this->id($new));
 	}
+
+	public function extract($id, $dir='') {
+		try {
+			setlocale(LC_ALL,'en_US.UTF-8');
+			$file = $this->base.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$id;
+			$extension = pathinfo($file, PATHINFO_EXTENSION);
+			$folderName = strstr($id,'.', true);
+
+			if($extension=='gz'){
+			    $phar = new PharData($file);
+			    $phar->decompress();
+			} elseif($extension=='tar'){
+			    $phar = new PharData($file);
+			    $phar->extractTo($this->base.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$folderName);
+			} elseif($extension=='zip'){
+				$path = pathinfo(realpath($file), PATHINFO_DIRNAME);
+				$zip = new ZipArchive;
+				$res = $zip->open($file);
+
+				if ($res === TRUE) {
+				  $zip->extractTo($path);
+				  $zip->close();
+				  return array('success' => 'extracted');
+				} else {
+					return array('error' => 'cannot open the file');
+				}
+			}else{
+
+			}
+		} catch (Exception $e) {
+		    echo '<pre>';print_r($e);die();
+		}
+		return array('success' => 'extracted');
+	}
 }
 
 if(isset($_POST) && isset($_POST['img'])){
@@ -432,6 +468,9 @@ if(isset($_POST) && isset($_POST['img'])){
 	try {
 		$rslt = null;
 		switch($_GET['operation']) {
+			case 'extract':
+				$rslt = $fs->extract($_POST['id'], $_POST['directory']);
+				break;
 			case 'get_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
 				$rslt = $fs->lst($node, (isset($_GET['id']) && $_GET['id'] === '#'));
@@ -454,13 +493,13 @@ if(isset($_POST) && isset($_POST['img'])){
 				break;
 			case 'move_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$parn = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
-				$rslt = $fs->move($node, $parn);
+				$pan = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
+				$rslt = $fs->move($node, $pan);
 				break;
 			case 'copy_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$parn = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
-				$rslt = $fs->copy($node, $parn);
+				$pan = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
+				$rslt = $fs->copy($node, $pan);
 				break;
 			default:
 				throw new Exception('Unsupported operation: ' . $_GET['operation']);

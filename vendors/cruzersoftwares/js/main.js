@@ -79,7 +79,21 @@ function eraseCookie(name) {
             .test(window.navigator.userAgent),
             imageMaxWidth: 100,
             imageMaxHeight: 100,
-            imageCrop: true
+            imageCrop: true,
+            beforeSend: function(e, data){
+                for (var i = data.files.length - 1; i >= 0; i--) {
+                    console.log(data.files[i].source);
+                }
+            },
+            done: function (e, data) {
+                console.log('done');
+                $.each(data.files, function (index, file) {
+                    console.log(file.name);
+                });
+            },
+            processfail: function (e, data) {
+                alert(data.files[data.index].name + "\n" + data.files[data.index].error);
+            }
         });
 
         $('#fileupload').addClass('fileupload-processing');
@@ -116,6 +130,39 @@ function eraseCookie(name) {
                 e.stopPropagation();
                 return false;
             }
+        });
+
+        $(document).on('click', '.extract', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            $('#fileLists input[type=checkbox]:checked').each(function(e){
+                var file = $(this).parents('tr').find('.name a').attr('download');
+                $.post('handler.php?operation=extract', { directory: $('#directory').val() || directoryTxt, id: file })
+                .done(function (d) {
+                    var res = $.parseJSON(d);
+                    if(res.success!== undefined){
+                        $('#msg').html(`<div class="alert alert-success fade in show alert-dismissible" style="margin-top:18px;">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                            <strong>Success!</strong> Files extracted sucessfully!
+                                        </div>`).show().delay(2000).fadeOut(100);
+                    } else{
+                        var error = '';
+                        if(res.error!==undefined) error = '<br/>'+res.error;
+                        $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                        <strong>Error!</strong> Cannot extracted file! ${error}
+                                    </div>`).show().delay(2000).fadeOut(100);
+                    }
+                })
+                .fail(function () {
+                    $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                        <strong>Error!</strong> Cannot extracted file!
+                                    </div>`).show().delay(2000).fadeOut(100);
+                });
+            })
+            return false;
         });
 
         $('#settingsHandler').on('click',function(){

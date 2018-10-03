@@ -3,8 +3,8 @@
  * jQuery File Upload Plugin PHP Class
  * https://github.com/blueimp/jQuery-File-Upload
  *
- * Copyright 2010, Sebastian Tschan
- * https://blueimp.net
+ * Copyright 2018, Cruzer Softwares
+ * https://www.cruzersoftwares.com
  *
  * Licensed under the MIT license:
  * https://opensource.org/licenses/MIT

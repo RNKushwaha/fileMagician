@@ -30,8 +30,8 @@ else $show_indent = true;
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="File manager, Online Editor, Image crop, Resize, filter and document viewer">
-        <meta name="author" content="RN Kushwaha">
+        <meta name="description" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
+        <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel="stylesheet" href="<?php loadStaticResource('vendors/bootstrap/css/bootstrap.min.css');?>">
         <link rel="stylesheet" type="text/css" href="<?php loadStaticResource('vendors/cruzersoftwares/css/style.css');?>" />
@@ -213,14 +213,16 @@ else $show_indent = true;
                         <div class="row fileupload-buttonbar">
                             <div class="col-lg-7">
                                 <span class="btn btn-success fileinput-button">
-                                    <i class="glyphicon glyphicon-plus"></i>
                                     <span>Add files...</span>
                                     <input type="file" name="files[]" multiple>
                                 </span>
                                 
                                 <button type="button" class="btn btn-danger delete">
-                                    <i class="glyphicon glyphicon-trash"></i>
                                     <span>Delete</span>
+                                </button>
+
+                                <button type="button" class="btn btn-info extract">
+                                    <span>Extract</span>
                                 </button>
                                 <input type="checkbox" class="toggle">
                                 <span class="fileupload-process"></span>
@@ -301,7 +303,7 @@ else $show_indent = true;
                             </td>
                             <td>
                                 {% if (file.deleteUrl) { %}
-                                    <button class="btn btn-danger btn-outline-danger deleteFile" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                                    <button class="btn btn-danger btn-outline-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                                         <i class="fas fa-trash"></i>
                                     </button>
                                     <input type="checkbox" name="delete" value="1" class="toggle">
