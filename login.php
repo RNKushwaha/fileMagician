@@ -1,7 +1,7 @@
 <?php if(!session_id()) session_start();
     date_default_timezone_set('Asia/Kolkata');
     if(isset($_SESSION['auth'])){
-        header('Location: /');
+        header('Location:index.php');
         exit();
     }
 
@@ -22,10 +22,10 @@
 
             if ($_POST['email'] == $email && password_verify($_POST['password'], $hash)) {
                 $_SESSION['auth'] = $email;
-                header('Location: /');
+                header('Location: index.php');
                 exit();
             } else {
-               $_SESSION['err'][] = 'Invalid Email/Passgit word!';
+               $_SESSION['err'][] = 'Invalid Email/Password!';
             }
         }
     }
