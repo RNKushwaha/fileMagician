@@ -1,7 +1,7 @@
 <?php if(!session_id()) session_start();
     date_default_timezone_set('Asia/Kolkata');
     if(isset($_SESSION['auth'])){
-        header('Location: index.php');
+        header('Location: /');
         exit();
     }
 
@@ -22,10 +22,10 @@
 
             if ($_POST['email'] == $email && password_verify($_POST['password'], $hash)) {
                 $_SESSION['auth'] = $email;
-                header('Location: index.php');
+                header('Location: /');
                 exit();
             } else {
-               $_SESSION['err'][] = 'Invalid Email/Password!';
+               $_SESSION['err'][] = 'Invalid Email/Passgit word!';
             }
         }
     }
@@ -35,8 +35,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="File manager, Online Editor, Image crop, Resize, filter and document viewer">
-        <meta name="author" content="RN Kushwaha">
+        <meta name="description" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
+        <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="vendors/cruzersoftwares/css/style.css" />
