@@ -29,11 +29,12 @@
 
 - Ace Editor
 - ToastUI Image Editor
-- Adminer Database Plugin
 - jQuery File Upload (Blueimp)
+- jQuery Resizable
 - File Tree jQuery Plugin
 - Font Awesome
 - Bootstrap Framework
+- Adminer Database Plugin
 - Google Files Preview
 - Cruzer Softwares
 

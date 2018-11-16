@@ -33,6 +33,7 @@ else $show_indent = true;
         <meta name="description" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
+        <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
         <link rel="stylesheet" href="<?php loadStaticResource('vendors/bootstrap/css/bootstrap.min.css');?>">
         <link rel="stylesheet" type="text/css" href="<?php loadStaticResource('vendors/cruzersoftwares/css/style.css');?>" />
     </head>
@@ -40,19 +41,41 @@ else $show_indent = true;
     <body>
     <div id="msg"></div>
     <div class="container-fluid">
-        <nav class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-3 col-md-2 mr-0">
-            <a class="navbar-brand1" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style="display:none">
-            <a id="infoHandler" class="icon_custom" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a>
-            <a id="settingsHandler" class="icon_custom" title="Settings"><i class="fas fa-cog fa-lg"></i></a>
-            <a id="refreshHandler" class="icon_custom" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a>
-            <a href="db.php" target="_blank" class="icon_custom" title="Database"><i class="fas fa-database fa-lg"></i></a>
-            <a href="logout.php" id="refreshHandler" class="icon_custom" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a>
-            <a>&nbsp;</a>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-12 col-md-12 mr-0">
+            <a class="navbar-brand1 col-md-2" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-       <div class="row">
-          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <form class="form-inline my-2 my-lg-0 col-md-7">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <div class="collapse navbar-collapse col-md-3" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto float-right">
+                    <li class="nav-item"><a id="infoHandler" class="icon_custom nav-link" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a></li>
+                    <li class="nav-item"><a id="settingsHandler" class="icon_custom nav-link" title="Settings"><i class="fas fa-cog fa-lg"></i></a></li>
+                    <li class="nav-item"><a id="refreshHandler" class="icon_custom nav-link" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a></li>
+                    <li class="nav-item"><a href="db.php" target="_blank" class="icon_custom nav-link" title="Database"><i class="fas fa-database fa-lg"></i></a></li>
+                    <li class="nav-item"><a href="logout.php" id="refreshHandler" class="icon_custom nav-link" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">About fileMagician</a>
+                        <a class="dropdown-item" href="#">Donate Us</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Check for Update</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+       <div class="row" id="container_wrap">
+          <nav class="bg-light sidebar1" id="left_panel">
             <div class="sidebar-sticky">
                 <div class="" id="fileMleftsidebar">
                     <div id="fileTree"></div>
@@ -60,7 +83,7 @@ else $show_indent = true;
             </div>
           </nav>
 
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding-top:5px;padding-left:0px;">
+          <main role="main" class="" style="" id="right_panel">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center" id="data">
                     <div id="metadata">
                         <!-- <label for="path">Path: <span></span></label> -->
@@ -80,7 +103,7 @@ else $show_indent = true;
                 <div id="tabs">
                    <ul class="nav nav-tabs" id="filesTab" role="tablist">
                         <li class="nav-item" id="newTab" style="margin-left:10px">
-                            <a class="nav-link" id="new-tab" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
+                            <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -321,7 +344,10 @@ else $show_indent = true;
     </div>
     
     <link rel="stylesheet" href="vendors/jstree/themes/default/style.min.css" charset="utf-8"/>
-    <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js" charset="utf-8"></script> -->
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="vendors/jstree/jstree.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/ace/ace.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/ace/ext-beautify.js" charset="utf-8"></script>

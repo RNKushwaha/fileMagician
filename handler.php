@@ -12,7 +12,10 @@ class fs
 
 	protected function real($path) {
 		$temp = realpath($path);
-		if(!$temp) { throw new Exception('Path does not exist: ' . $path); }
+		if(!$temp) {
+			//may be its a new file
+			throw new Exception('Path does not exist: ' . $path);
+		}
 		if($this->base && strlen($this->base)) {
 			if(strpos($temp, $this->base) !== 0) {
 				throw new Exception('Path is not inside base ('.$this->base.'): ' . $temp);
@@ -321,8 +324,26 @@ class fs
 					$dat['content'] = 'File not recognized: '.$this->id($dir);
 					break;
 			}
+		} else{die('yes');
+			$ext = strpos($dir, '.') !== FALSE ? substr($dir, strrpos($dir, '.') + 1) : '';
+			$dat = array('type' => $ext, 'content' => '');
+			$foldersParams = explode('/', $dir);
+			if(count($foldersParams)){
+				$fileToSave = array_pop($foldersParams);
+				$fullDir = implode('/',$foldersParams);
+				if (!is_dir($fullDir) or !is_writable($fullDir)) {
+					die(json_encode(['error' => 'Folder '.$fullDir.' is not writable!']));
+				}
+			}
+			
+			if (is_file($dir) && !is_writable($dir)){
+				die(json_encode(['error' => 'File '.$dir.' is not writable!']));
+			}
+			
+			file_put_contents($dir, base64_decode($content)) or die(json_encode(['error' => 'Could not save the file!'.$dir]));
+			die(json_encode(['success' => 'File has been saved!']));
 		}
-
+		die('end');
 		throw new Exception('Not a valid selection: ' . $dir);
 	}
 

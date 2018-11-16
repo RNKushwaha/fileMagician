@@ -165,6 +165,39 @@ function eraseCookie(name) {
             return false;
         });
 
+        $("#left_panel").resizable({
+            handles: 'e',
+            maxWidth: 900,
+            minWidth: 20,
+            resize: function (event, ui) {
+                var currentWidth = ui.size.width;
+                // this accounts for padding in the panels + 
+                // borders, you could calculate this using jQuery
+                var padding = 12;
+                // this accounts for some lag in the ui.size value, if you take this away 
+                // you'll get some instable behaviour
+                $(this).width(currentWidth);
+                // set the content panel width
+                $("#right_panel").width($("#container_wrap").width() - currentWidth - padding);
+                $("#right_panel #myTabContent div.editor").css('left', currentWidth);
+                $("#uploader,#imageEditor").css('left', currentWidth);
+                
+                var editors = getAllEditorIDs();
+                for (var ed of editors) {
+                    var editor = ace.edit(ed);
+                    editor.resize();
+                }
+            }
+        });
+
+        var getAllEditorIDs = function(){
+            var ids = [];
+            $(document).find('#filesTab a.nav-link:not(#new-tab)').each(function(){
+                ids.push( $(this).attr('href').replace('#', '') );
+            })
+            return ids;
+        }
+
         $('#settingsHandler').on('click',function(){
             $('#info').hide();
             $('#settings').toggle();
@@ -183,62 +216,87 @@ function eraseCookie(name) {
         });
 
         $('#theme').on('change',function(){
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/"+$(this).val());
+            var editors = getAllEditorIDs();
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.setTheme("ace/theme/"+$(this).val());
+            }
             setCookie('theme',$(this).val(),30);
         });
 
         $('#font_size').on('change',function(){
-            var editor = ace.edit("editor");
-            editor.setFontSize($(this).val());
+            var editors = getAllEditorIDs();
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.setFontSize($(this).val());
+            }
             setCookie('font_size',$(this).val(),30);
         });
 
         $('#wrap_text').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var wrapOption = ($(this).val() == 'true' ? true : false);
-            editor.getSession().setUseWrapMode(wrapOption);
+            
+            for (var ed of editors){
+                var editor = ace.edit(ed);
+                editor.getSession().setUseWrapMode(wrapOption);
+            }
             setCookie('wrap_text',wrapOption,30);
         });
 
         $('#soft_tab').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var softtabOption = ($(this).val() == 'false' ? false : true);
             var softsizeOption = ($('#soft_tab_size').val() >0 ? $('#soft_tab_size').val() : 4);
-            editor.getSession().setUseSoftTabs(softtabOption);
-            editor.getSession().setTabSize(softsizeOption);
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.getSession().setUseSoftTabs(softtabOption);
+                editor.getSession().setTabSize(softsizeOption);
+            }
             setCookie('soft_tab',softtabOption,30);
             setCookie('soft_tab_size',softsizeOption,30);
         });
 
         $('#soft_tab_size').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var softtabOption = ($('#soft_tab').val() == 'false' ? false : true);
             var softsizeOption = ($(this).val() >0 ? $(this).val() : 4);
-            editor.getSession().setUseSoftTabs(softtabOption);
-            editor.getSession().setTabSize(softsizeOption);
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.getSession().setUseSoftTabs(softtabOption);
+                editor.getSession().setTabSize(softsizeOption);
+            }
             setCookie('soft_tab',softtabOption,30);
             setCookie('soft_tab_size',softsizeOption,30);
         });
 
         $('#show_invisible').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var show_invisible = ($(this).val() == 'true' ? true : false);
-            editor.setShowInvisibles(show_invisible);
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.setShowInvisibles(show_invisible);
+            }
             setCookie('show_invisible',show_invisible,30);
         });
 
         $('#show_gutter').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var show_gutter = ($(this).val() == 'false' ? false : true);
-            editor.renderer.setShowGutter(show_gutter);
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.renderer.setShowGutter(show_gutter);
+            }
             setCookie('show_gutter',show_gutter,30);
         });
 
         $('#show_indent').on('change',function(){
-            var editor = ace.edit("editor");
+            var editors = getAllEditorIDs();
             var show_indent = ($(this).val() == 'false' ? false : true);
-            editor.setDisplayIndentGuides(show_indent);
+            for (var ed of editors) {
+                var editor = ace.edit(ed);
+                editor.setDisplayIndentGuides(show_indent);
+            }
             setCookie('show_indent',show_indent,30);
         });
 
@@ -253,6 +311,41 @@ function eraseCookie(name) {
             var editor = ace.edit(tabId);
             editor.focus();
             //todo: update the meta info
+        })
+        //open new file editor
+        $(document).on('click', '#filesTab li a#new-tab', function (e) {
+            e.preventDefault();
+            var fileCounter = 1;
+
+            if ($(this).data('id') == 'undefined' && $(this).data('id')== ''){
+                $(this).data('id', fileCounter);
+            } else{
+                fileCounter = parseInt($(this).data('id'));
+                fileCounter++;
+                $(this).data('id', fileCounter);
+            }
+
+            var directoryStr = $('#directory').val();
+
+            tabId = 'new_file_'+fileCounter+'.txt';
+            tabId2 = 'new_file_'+fileCounter+'__txt';
+            
+            if(directoryStr!=''){
+                tabId = directoryStr+'_new_file_'+fileCounter+'.txt';
+                tabId2 = directoryStr+'_new_file_'+fileCounter+'__txt';
+            }
+
+            $('#myTabContent').append('<div id="editor_'+tabId2+'" class="editor tab-pane fade ace_editor ace_hidpi ace-dawn" role="tabpanel" style="font-size: 12px; left: 250px;"></div>');
+            $(document).find('.editor').removeClass('active').removeClass('show');
+            $(document).find('#filesTab a.nav-link').removeClass('active');
+            $(document).find('#filesTab li a#new-tab').parent().before('<li class="nav-item"><a id="link_'+tabId2+'" class="nav-link active" title="'+tabId+'" data-toggle="tab" role="tab" aria-controls="'+tabId+'" aria-selected="true" href="#editor_'+tabId2+'">'+tabId+'&nbsp;&nbsp; <svg class="svg-inline--fa fa-times fa-w-11" aria-hidden="true" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg> </a></li>');
+            $(document).find('#editor_' + tabId2).addClass('active').addClass('show');
+            //move cursor to the previous position
+            $configureEditor(tabId2, 'txt', '');
+            // var editor = ace.edit('editor_'+tabId2);
+            // editor.getSession().setMode("ace/mode/text");
+            // editor.setShowPrintMargin(false);
+            // editor.focus();
         })
 
         //clean the DOM and editor
@@ -272,7 +365,7 @@ function eraseCookie(name) {
             $(document).find('.editor').removeClass('active').removeClass('show');
             $(document).find('#filesTab a.nav-link').removeClass('active');
             $(document).find('#' + tabIdFirst).addClass('active').addClass('show');
-            $('#filesTab>li a.nav-link').addClass('active');
+            $('#filesTab li:first-child a.nav-link').addClass('active');
             //move cursor to the previous position
             var editor2 = ace.edit(tabIdFirst);
             editor2.focus();
@@ -408,6 +501,7 @@ function eraseCookie(name) {
                 editor.session.setValue( Base64.decode(fileContent));
                 editor.clearSelection();
                 editor.focus();
+                $("#editor_" + tabId).css('left', $('#left_panel').css('width'));
                 return editor;
             })();
 
