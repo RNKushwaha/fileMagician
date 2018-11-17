@@ -324,7 +324,8 @@ class fs
 					$dat['content'] = 'File not recognized: '.$this->id($dir);
 					break;
 			}
-		} else{die('yes');
+		} else{
+			// todo: let it save a new file which doesn't exist on the server
 			$ext = strpos($dir, '.') !== FALSE ? substr($dir, strrpos($dir, '.') + 1) : '';
 			$dat = array('type' => $ext, 'content' => '');
 			$foldersParams = explode('/', $dir);
@@ -343,7 +344,7 @@ class fs
 			file_put_contents($dir, base64_decode($content)) or die(json_encode(['error' => 'Could not save the file!'.$dir]));
 			die(json_encode(['success' => 'File has been saved!']));
 		}
-		die('end');
+
 		throw new Exception('Not a valid selection: ' . $dir);
 	}
 

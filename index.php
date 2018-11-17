@@ -42,34 +42,41 @@ else $show_indent = true;
     <div id="msg"></div>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-12 col-md-12 mr-0">
-            <a class="navbar-brand1 col-md-2" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
+            <a class="navbar-brand bg-primary col-md-2" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <form class="form-inline my-2 my-lg-0 col-md-7">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0 col-md-7" id="seaerchFrm" method="get">
+                <input class="form-control mr-sm-2" type="search" name="q" id="searchString" value="<?php if( isset($_GET) && isset($_GET['q']) ) echo htmlspecialchars($_GET['q']);?>" placeholder="Search" aria-label="Search">
             </form>
 
             <div class="collapse navbar-collapse col-md-3" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto float-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plugins
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="db.php" target="_blank">Adminer</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:;" target="_blank" >Available Plugins</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">About fileMagician</a>
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">Donate Us</a>
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">Check for Update</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a id="infoHandler" class="icon_custom nav-link" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a></li>
                     <li class="nav-item"><a id="settingsHandler" class="icon_custom nav-link" title="Settings"><i class="fas fa-cog fa-lg"></i></a></li>
                     <li class="nav-item"><a id="refreshHandler" class="icon_custom nav-link" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a></li>
-                    <li class="nav-item"><a href="db.php" target="_blank" class="icon_custom nav-link" title="Database"><i class="fas fa-database fa-lg"></i></a></li>
                     <li class="nav-item"><a href="logout.php" id="refreshHandler" class="icon_custom nav-link" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        More
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">About fileMagician</a>
-                        <a class="dropdown-item" href="#">Donate Us</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Check for Update</a>
-                        </div>
-                    </li>
                 </ul>
             </div>
             </nav>
@@ -77,16 +84,15 @@ else $show_indent = true;
        <div class="row" id="container_wrap">
           <nav class="bg-light sidebar1" id="left_panel">
             <div class="sidebar-sticky">
-                <div class="" id="fileMleftsidebar">
+                <div id="fileMleftsidebar">
                     <div id="fileTree"></div>
                 </div>
             </div>
           </nav>
 
-          <main role="main" class="" style="" id="right_panel">
+          <main role="main" id="right_panel">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center" id="data">
                     <div id="metadata">
-                        <!-- <label for="path">Path: <span></span></label> -->
                         <label for="size">Size: <span></span></label>
                         <label for="dimension">Dimension: <span></span></label>
                         <label for="contains">Contains: <span></span></label>
@@ -94,10 +100,10 @@ else $show_indent = true;
                         <label for="lastmodified">Modified: <span></span></label>
                         <label for="line">Line: <span></span></label>
                         <label for="permission">Permission: <span></span>
-                            <input type="text" class="input input-sm " value="" required="required" id="updatePermission">
-                            <a href="" id="updatePermissionBtn"><i class="fas fa-check-circle fa-lg"></i></a>
+                            <input type="text" class="input input-sm" value="" required="required" id="updatePermission">
+                            <a id="updatePermissionBtn"><i class="fas fa-check-circle fa-lg"></i></a>
                         </label>
-                        <a href ="imageEditor.php?image=" target="_blank" class="btn btn-primary btn-sm" id="editImage">Edit Image</a>
+                        <a href="imageEditor.php?image=" target="_blank" class="btn btn-primary btn-sm" id="editImage">Edit Image</a>
                     </div>
                 </div>
                 <div id="tabs">
@@ -110,7 +116,7 @@ else $show_indent = true;
                         
                     </div>
                 </div>
-                <div id="info" style="display: none;">
+                <div id="info">
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
                     <?php echo '<tr><th>Browser </th><td>'.$_SERVER['HTTP_USER_AGENT']."</td></tr>";
                           echo '<tr><th>Root </th><td>'.$_SERVER['DOCUMENT_ROOT']."</td></tr>";
@@ -125,7 +131,7 @@ else $show_indent = true;
                     </table>
                     <a class="btn btn-danger btncloseDiv">Close</a>        
                 </div>
-                <div id="settings" style="display: none;"> 
+                <div id="settings"> 
                     <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
                         <tr>
                             <th>Theme</th>
@@ -230,7 +236,7 @@ else $show_indent = true;
                     </table>
                     <a class="btn btn-danger btncloseDiv">Close</a>
                 </div>
-                <div id="uploader" style="display: none;">
+                <div id="uploader">
                     <form id="fileupload" action="./uploadHandler.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="directory" value="" id="directory">
                         <div class="row fileupload-buttonbar">
@@ -337,17 +343,17 @@ else $show_indent = true;
                     </script>
 
                 </div>
-                <div id="imageEditor" style="display: none;"><img /></div>
-                <div id="docViewer" style="display: none;"></div>
+                <div id="imageEditor"><img /></div>
+                <div id="docViewer"></div>
           </main>
         </div>
     </div>
-    
+
     <link rel="stylesheet" href="vendors/jstree/themes/default/style.min.css" charset="utf-8"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="vendors/jquery/css/jquery-ui.1.12.1.min.css" charset="utf-8">
     <!-- <script type="text/javascript" src="vendors/jquery/jquery-3.2.1.min.js" charset="utf-8"></script> -->
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="vendors/jquery/js/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="vendors/jquery/js/jquery-ui.1.12.1.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/jstree/jstree.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/ace/ace.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/ace/ext-beautify.js" charset="utf-8"></script>
@@ -373,6 +379,8 @@ else $show_indent = true;
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendors/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
     <script type="text/javascript" src="<?php loadStaticResource('vendors/cruzersoftwares/js/main.js');?>" charset="utf-8"></script>
+    <script type="text/javascript" src="vendors/bootstrap/js/popper.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
     <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
 </body>
 </html>

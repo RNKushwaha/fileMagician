@@ -1,4 +1,4 @@
-#imageEditor,#uploader,#info,#settings,#docViewer{position: absolute;left: 250px;height:100vh;right: 0;top:40px;bottom: 0;padding: 20px}
+#imageEditor,#uploader,#info,#settings,#docViewer{display:none;position: absolute;left: 250px;height:100vh;right: 0;top:40px;bottom: 0;padding: 20px}
 .editor{position: absolute;left: 250px;height:85vh;right: 0;top:95px;bottom: 0;padding: 20px}
 #left_panel{width: 250px;top:40px}
 #right_panel{padding-top:5px;padding-left:0px;margin-top:50px}
@@ -10,7 +10,7 @@
 #metadata{font-size:12px;display: block; position: fixed; z-index: 99; bottom:0px; right:0px;background: #1d1919;opacity: 0.8;color: #fff;padding: 1px 10px;height: 30px}
 #metadata label span{font-weight: normal;}
 #uploader{overflow: auto;right:5px;top:50px;bottom:5px;border:2px dashed #666;height:90vh;box-sizing: border-box;}
-#fileMleftsidebar{width: auto;margin-left:15px;border-right: 1px solid #ccc;overflow: auto;font:12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;}
+#fileMleftsidebar{font:12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;}
 .fileTreeLabel{color: #fff;float: left;clear: left;line-height: 35px}
 #fileTree{padding-top: 1px;margin-bottom: -45px;}
 #fileTree .folder { background:url('../../jstree/file_sprite.png') right bottom no-repeat; }
@@ -41,19 +41,13 @@ ul.jstree-contextmenu{z-index: 999;}
 #msg{position: absolute;z-index:999;left:10px;bottom: 5px;display: none;}
 #msg .success{background: green;color: #fff;}
 #msg .error{background: red;color: #fff;}
-.navbar {background-color: #0e83cd;color: #fff;padding: 5px 10px;margin-bottom: 0}
-.navbar a{color: #fff;}
 #settingsHandler,.btncloseDiv{cursor: pointer;}
 #updatePermission{width: 50px;padding: 0;height: 25px;}
 #updatePermissionBtn,#editImage{padding:0 5px;}
-.navbar-brand1{height: 30px;font-weight: bold; line-height: 30px; padding: 2px 5px; letter-spacing: 1px; font-family: cursive}
-.sidebar{padding: 22px 0 0}
+.navbar-brand{font-weight: bold;letter-spacing: 2px; font-family: cursive}
 .nav-tabs .nav-link:focus{outline: none!important}
 .svg-inline--fa.unsaved{color:red;}
 .table .files td, .table .files th{padding: 2px 5px;}
 .table .files .btn{border:none;background: none;padding: 0px;vertical-align: middle;}
 .table .files .btn:hover,.table .files .btn:focus,.table .files .btn:active,.table .files .btn:active:focus{color: blue;padding:0px;outline: 0;border:0;background: none}
-
-
-
-
+#searchString{line-height: 25px; padding: 4px 13px;}
