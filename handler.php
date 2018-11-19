@@ -428,6 +428,12 @@ class fs
 		return array('id' => $this->id($new));
 	}
 
+	public function folderExists($folder) {
+	    // Get canonicalized absolute pathname
+	    $path = realpath($folder);
+	    return ($path !== false AND is_dir($path)) ? true : false;
+	}
+
 	public function extract($id, $dir='') {
 		try {
 			setlocale(LC_ALL,'en_US.UTF-8');
@@ -435,12 +441,36 @@ class fs
 			$extension = pathinfo($file, PATHINFO_EXTENSION);
 			$folderName = strstr($id,'.', true);
 
-			if($extension=='gz'){
+			if( substr($file, -6)=='sql.gz'){
+			    $file_name = $file;
+				$buffer_size = 4096;// read 4kb at a time
+				$out_file_name = str_replace('.gz', '', $file_name); 
+
+				// Open our files (in binary mode)
+				$file = gzopen($file_name, 'rb');
+				$out_file = fopen($out_file_name, 'wb'); 
+
+				// Keep repeating until the end of the input file
+				while (!gzeof($file)) {
+				    // Read buffer-size bytes
+				    // Both fwrite and gzread and binary-safe
+				    fwrite($out_file, gzread($file, $buffer_size));
+				}
+
+				// Files are done, close files
+				fclose($out_file);
+				gzclose($file);
+			} elseif($extension=='gz'){
 			    $phar = new PharData($file);
 			    $phar->decompress();
 			} elseif($extension=='tar'){
 			    $phar = new PharData($file);
-			    $phar->extractTo($this->base.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$folderName);
+			    //if folder already exists show the error message
+			    if( $d = $this->folderExists($this->base.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$folderName)===true){
+			    	return array('error' => 'folder already exists');
+			    }
+
+			    $res = $phar->extractTo($this->base.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$folderName);
 			} elseif($extension=='zip'){
 				$path = pathinfo(realpath($file), PATHINFO_DIRNAME);
 				$zip = new ZipArchive;
@@ -459,6 +489,7 @@ class fs
 		} catch (Exception $e) {
 		    echo '<pre>';print_r($e);die();
 		}
+
 		return array('success' => 'extracted');
 	}
 }

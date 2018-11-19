@@ -140,7 +140,13 @@ function eraseCookie(name) {
                 var file = $(this).parents('tr').find('.name a').attr('download');
                 $.post('handler.php?operation=extract', { directory: $('#directory').val() || directoryTxt, id: file })
                 .done(function (d) {
-                    var res = $.parseJSON(d);
+                    console.log(typeof d );
+                    if(typeof d == 'object'){
+                        var res = JSON.parse(JSON.stringify(d));
+                    } else if(typeof d == 'string'){
+                        var res = JSON.parse(d.toString());
+                    }
+                    
                     if(res.success!== undefined){
                         $('#msg').html(`<div class="alert alert-success fade in show alert-dismissible" style="margin-top:18px;">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
@@ -625,6 +631,15 @@ function eraseCookie(name) {
             $('#fileTree').height(h).filter('.default').css('lineHeight', h + 'px');
         }).resize();
 
+        var to = false;
+          $('#searchString').keyup(function () {
+            if(to) { clearTimeout(to); }
+            to = setTimeout(function () {
+              var v = $('#searchString').val();
+              $('#fileTree').jstree(true).search(v);
+            }, 250);
+          });
+
         $('#fileTree')
             .jstree({
                 'core' : {
@@ -693,7 +708,7 @@ function eraseCookie(name) {
                         return name + ' ' + counter;
                     }
                 },
-                'plugins' : ['state','dnd','sort','types','contextmenu','unique']
+                'plugins' : ['state','dnd','sort','types','contextmenu','unique', 'search', 'wholerow']
             })
             .on('delete_node.jstree', function (e, data) {
                 $.get('handler.php?operation=delete_node', { 'id' : data.node.id })

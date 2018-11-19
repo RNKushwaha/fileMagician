@@ -31,7 +31,7 @@
 - ToastUI Image Editor
 - jQuery File Upload (Blueimp)
 - jQuery Resizable
-- File Tree jQuery Plugin
+- jsTree
 - Font Awesome
 - Bootstrap Framework
 - Adminer Database Plugin
