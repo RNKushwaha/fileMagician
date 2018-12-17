@@ -2,10 +2,10 @@
 .editor{position: absolute;left: 250px;height:85vh;right: 0;top:95px;bottom: 0;padding: 20px}
 #left_panel{width: 250px;top:40px}
 #right_panel{padding-top:5px;padding-left:0px;margin-top:50px}
-#info,#settings{background: #1d1919;z-index: 9999;opacity: 0.8;color: #fff;}
-#fileMleftsidebar #settings{width: auto;display: none;position: absolute; z-index:9999;background: #1d1919;opacity:0.8;padding: 5px 10px;left:0px;}
-#fileMleftsidebar #settings select{float: right;}
-#fileMleftsidebar #settings input[type=number]{float: right;}
+#info,#settings{background: #1d1919;z-index: 9999;opacity: 0.8;color: #fff;width:500px;right:0;left:initial!important;}
+#settings{display: none;position: absolute; z-index:9999;padding: 5px 10px;left:0px;}
+#settings select{float: right;}
+#settings input[type=number]{float: right;}
 #imageEditor img{max-height: 80vh;max-width: 80vw;}
 #metadata{font-size:12px;display: block; position: fixed; z-index: 99; bottom:0px; right:0px;background: #1d1919;opacity: 0.8;color: #fff;padding: 1px 10px;height: 30px}
 #metadata label span{font-weight: normal;}
