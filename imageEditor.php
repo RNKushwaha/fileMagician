@@ -9,8 +9,8 @@
         <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
-        <link type="text/css" href="<?php loadStaticResource('vendors/tui/css/tui-color-picker.css');?>" rel="stylesheet">
-        <link type="text/css" href="<?php loadStaticResource('vendors/tui/css/tui-image-editor.min.css');?>" rel="stylesheet">
+        <link type="text/css" href="<?php loadStaticResource('vendor/tui/css/tui-color-picker.css');?>" rel="stylesheet">
+        <link type="text/css" href="<?php loadStaticResource('vendor/tui/css/tui-image-editor.min.css');?>" rel="stylesheet">
         <style>
             html, body {height: 100%; margin: 0;}
             .tui-image-editor-header-logo{display: none;height: 0;width: 0;opacity: 0;}
@@ -19,14 +19,14 @@
     <body>
         <div id="tui-image-editor-container"></div>
 
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/fabric.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/tui-code-snippet.min.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/FileSaver.min.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/tui-color-picker.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/tui-image-editor.min.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/white-theme.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/tui/js/black-theme.js');?>"></script>
-        <script type="text/javascript" src="<?php loadStaticResource('vendors/jquery/jquery-3.2.1.min.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/fabric.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/tui-code-snippet.min.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/FileSaver.min.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/tui-color-picker.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/tui-image-editor.min.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/white-theme.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/black-theme.js');?>"></script>
+        <script type="text/javascript" src="<?php loadStaticResource('vendor/jquery/jquery-3.2.1.min.js');?>"></script>
         <script>
          var fileName = '<?php echo $_REQUEST['image']?>';
          var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {

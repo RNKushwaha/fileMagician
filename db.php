@@ -4,10 +4,10 @@ require_once 'init.php';
 
 function adminer_object() {
     // required to run any plugin
-    include_once "vendors/adminer/plugin.php";
+    include_once "vendor/adminer/plugin.php";
     
     // autoloader
-    foreach (glob("vendors/adminer/*.php") as $filename) {
+    foreach (glob("vendor/adminer/*.php") as $filename) {
         include_once "./$filename";
     }
 
@@ -15,7 +15,7 @@ function adminer_object() {
         // specify enabled plugins here
         // new AdminerWymeditor,
         new AdminerTinymce,
-        new AdminerSqlLog(__DIR__.'/vendors/adminer/logs/'),
+        new AdminerSqlLog(__DIR__.'/vendor/adminer/logs/'),
         new AdminerDumpBz2,
         new AdminerDumpDate,
         new AdminerDumpJson,
@@ -52,4 +52,4 @@ function adminer_object() {
 }
 
 // include original Adminer or Adminer Editor
-include "vendors/adminer/adminer.php";
+include "vendor/adminer/adminer.php";

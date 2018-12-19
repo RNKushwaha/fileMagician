@@ -1,0 +1,5 @@
+{
+    "require": {
+        "gitonomy/gitlib": "^1.0"
+    }
+}

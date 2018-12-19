@@ -1,30 +1,3 @@
-<?php define('_ACCESS_OK', true);
-require_once 'init.php';
-//get cookie to make form selected
-if(isset($_COOKIE['theme'])) $theme = $_COOKIE['theme'];
-else $theme = 'eclipse';
-
-if(isset($_COOKIE['font_size'])) $font_size = $_COOKIE['font_size'];
-else $font_size = '14px';
-
-if(isset($_COOKIE['wrap_text'])) $wrap_text = (boolean)$_COOKIE['wrap_text'];
-else $wrap_text = false;
-
-if(isset($_COOKIE['soft_tab'])) $soft_tab = (boolean)$_COOKIE['soft_tab'];
-else $soft_tab = true;
-
-if(isset($_COOKIE['soft_tab_size'])) $soft_tab_size = $_COOKIE['soft_tab_size'];
-else $soft_tab_size = 4;
-
-if(isset($_COOKIE['show_invisible'])) $show_invisible = (boolean)$_COOKIE['show_invisible'];
-else $show_invisible = false;
-
-if(isset($_COOKIE['show_gutter'])) $show_gutter = (boolean)$_COOKIE['show_gutter'];
-else $show_gutter = true;
-
-if(isset($_COOKIE['show_indent'])) $show_indent = (boolean)$_COOKIE['show_indent'];
-else $show_indent = true;
-?>
 <!doctype html>
 <html lang="en">
     <head>
