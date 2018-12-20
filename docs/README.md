@@ -1,4 +1,4 @@
-# Adding Awesomeness to the web
+# Adding Awesomeness to the Web
 
 ## Features
 
