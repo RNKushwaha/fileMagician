@@ -1,4 +1,9 @@
-# Adding Awesomeness to the Web
+---
+title: Adding Awesomeness to the Web
+---
+
+fileMagician
+=====
 
 ## Features
 
