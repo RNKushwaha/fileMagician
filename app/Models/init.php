@@ -19,4 +19,4 @@ if(!isset($_SESSION['auth'])){
 	exit();
 }
 
-require_once 'functions.php';
+require_once 'vendor/autoload.php';

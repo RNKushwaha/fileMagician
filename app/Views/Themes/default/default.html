@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
+        <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
+
+        {% block title %}
+        <title>{{ title }}</title>
+        {% endblock %}
+
+        {% block head %}
+        <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
+        <link rel="stylesheet" href="{{ baseurl }}assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ baseurl }}assets/cruzersoftwares/css/style.css" />
+        {% endblock %}
+    </head>
+    
+    <body>
+        <noscript>
+            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;  height: 100%; width: 100%; background-color: #FFFFFF; font-size:30px; text-align:center;">
+                <br/><br/>
+                 For full functionality of this site it is necessary to enable JavaScript.<br/>
+                 Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+                 instructions how to enable JavaScript in your web browser</a>.
+            </div>
+        </noscript>
+
+    <div id="msg"></div>
+    <div class="container-fluid">
+        {% block navigation %}
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow col-sm-12 col-md-12 mr-0">
+            <a class="navbar-brand bg-primary col-md-2" target="_blank" href="https://cruzersoftwares.github.io/fileMagician/"> fileMagician</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form class="form-inline my-2 my-lg-0 col-md-7" id="seaerchFrm" method="get">
+                <input class="form-control mr-sm-2" type="search" name="q" id="searchString" value="{{ q }}" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="collapse navbar-collapse col-md-3" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto float-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plugins
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="db.php" target="_blank">Adminer</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:;" target="_blank" >Available Plugins</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">About fileMagician</a>
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">Donate Us</a>
+                            <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">Check for Update</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a id="infoHandler" class="icon_custom nav-link" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a></li>
+                    <li class="nav-item"><a id="settingsHandler" class="icon_custom nav-link" title="Settings"><i class="fas fa-cog fa-lg"></i></a></li>
+                    <li class="nav-item"><a id="refreshHandler" class="icon_custom nav-link" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a></li>
+                    <li class="nav-item"><a href="logout.php" id="refreshHandler" class="icon_custom nav-link" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+        {% endblock %}
+        
+        {% block content %}
+        {% endblock %}
+
+    </div>
+    <script type="text/javascript">
+        var baseurl = '{{ baseurl }}';
+    </script>
+
+    {% block footerscripts %}
+    <link rel="stylesheet" href="{{ baseurl }}assets/jstree/themes/default/style.min.css" charset="utf-8"/>
+    <link rel="stylesheet" href="{{ baseurl }}assets/jquery/css/jquery-ui.1.12.1.min.css" charset="utf-8">
+    <script type="text/javascript" src="{{ baseurl }}assets/jquery/js/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/jquery/js/jquery-ui.1.12.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/jstree/jstree.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/ace/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/ace/ext-beautify.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/ace/ext-language_tools.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/ace/keybinding-vim.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/ace/keybinding-emacs.js" charset="utf-8"></script>
+    
+    <link rel="stylesheet" href="{{ baseurl }}assets/blueimp/css/gallery.min.css" charset="utf-8">
+    <link rel="stylesheet" href="{{ baseurl }}assets/blueimp/css/jquery.fileupload.css" charset="utf-8">
+    <link rel="stylesheet" href="{{ baseurl }}assets/blueimp/css/jquery.fileupload-ui.css" charset="utf-8">
+
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/vendor/jquery.ui.widget.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/tmpl.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/load-image.all.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/canvas-to-blob.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.blueimp-gallery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.iframe-transport.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-process.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-image.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-audio.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-video.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/cruzersoftwares/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/bootstrap/js/popper.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ baseurl }}assets/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+    <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+    {% endblock %}
+</body>
+</html>

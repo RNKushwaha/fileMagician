@@ -1,0 +1,227 @@
+{% extends "Themes/default/default.html" %}
+
+{% block content %}
+<div class="row" id="container_wrap">
+  <nav class="bg-light sidebar1" id="left_panel">
+    <div class="sidebar-sticky">
+        <div id="fileMleftsidebar">
+            <div id="fileTree"></div>
+        </div>
+    </div>
+  </nav>
+
+  <main role="main" id="right_panel">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center" id="data">
+            <div id="metadata">
+                <label for="size">Size: <span></span></label>
+                <label for="dimension">Dimension: <span></span></label>
+                <label for="contains">Contains: <span></span></label>
+                <label for="created">Created: <span></span></label>
+                <label for="lastmodified">Modified: <span></span></label>
+                <label for="line">Line: <span></span></label>
+                <label for="permission">Permission: <span></span>
+                    <input type="text" class="input input-sm" value="" required="required" id="updatePermission">
+                    <a id="updatePermissionBtn"><i class="fas fa-check-circle fa-lg"></i></a>
+                </label>
+                <a href="imageEditor.php?image=" target="_blank" class="btn btn-primary btn-sm" id="editImage">Edit Image</a>
+            </div>
+        </div>
+        <div id="tabs">
+           <ul class="nav nav-tabs" id="filesTab" role="tablist">
+                <li class="nav-item" id="newTab" style="margin-left:10px">
+                    <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                
+            </div>
+        </div>
+        <div id="info">
+            <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
+                <tr><th>Browser </th><td>{{ http_user_agent }}</td></tr>
+                <tr><th>Root </th><td>{{ document_root }}</td></tr>
+                <tr><th>Server Name </th><td>{{ server_name }}</td></tr>
+                <tr><th>Server OS </th><td>{{ server_software }}</td></tr>
+                <tr><th>Server IP </th><td>{{ server_addr }}</td></tr>
+                <tr><th>Your IP </th><td>{{ remote_addr }}</td></tr>
+                <tr><th>PHP Version </th><td>{{ phpversion }}</td></tr>
+                <tr><th>Server Timezone </th><td>{{ timezone }}</td></tr>
+                <tr><th>Server Time </th><td>{{ server_time }}</td></tr>
+            </table>
+            <a class="btn btn-danger btncloseDiv">Close</a>        
+        </div>
+        <div id="settings"> 
+            <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
+                <tr>
+                    <th>Theme</th>
+                    <td>
+                        <select name="theme" id="theme">
+                            <option value="ambiance" {{ settings.theme=='ambiance' ? 'selected': '' }}>ambiance</option>
+                            <option value="chaos" {{ settings.theme=='chaos' ? 'selected': '' }}>chaos</option>
+                            <option value="chrome" {{ settings.theme=='chrome' ? 'selected': '' }}>chrome</option>
+                            <option value="clouds_midnight" {{ settings.theme=='clouds_midnight' ? 'selected': '' }}>clouds_midnight</option>
+                            <option value="clouds" {{ settings.theme=='clouds' ? 'selected': '' }}>clouds</option>
+                            <option value="cobalt" {{ settings.theme=='cobalt' ? 'selected': '' }}>cobalt</option>
+                            <option value="crimson_editor" {{ settings.theme=='crimson_editor' ? 'selected': '' }}>crimson_editor</option>
+                            <option value="dawn" {{ settings.theme=='dawn' ? 'selected': '' }}>dawn</option>
+                            <option value="dracula" {{ settings.theme=='dracula' ? 'selected': '' }}>dracula</option>
+                            <option value="dreamweaver" {{ settings.theme=='dreamweaver' ? 'selected': '' }}>dreamweaver</option>
+                            <option value="eclipse" {{ settings.theme=='eclipse' ? 'selected': '' }}>eclipse</option>
+                            <option value="github" {{ settings.theme=='github' ? 'selected': '' }}>github</option>
+                            <option value="gob" {{ settings.theme=='gob' ? 'selected': '' }}>gob</option>
+                            <option value="gruvbox" {{ settings.theme=='gruvbox' ? 'selected': '' }}>gruvbox</option>
+                            <option value="idle_fingers" {{ settings.theme=='idle_fingers' ? 'selected': '' }}>idle_fingers</option>
+                            <option value="iplastic" {{ settings.theme=='iplastic' ? 'selected': '' }}>iplastic</option>
+                            <option value="katzenmilch" {{ settings.theme=='katzenmilch' ? 'selected': '' }}>katzenmilch</option>
+                            <option value="kr_theme" {{ settings.theme=='kr_theme' ? 'selected': '' }}>kr_theme</option>
+                            <option value="kuroir" {{ settings.theme=='kuroir' ? 'selected': '' }}>kuroir</option>
+                            <option value="merbivore_soft" {{ settings.theme=='merbivore_soft' ? 'selected': '' }}>merbivore_soft</option>
+                            <option value="merbivore" {{ settings.theme=='merbivore' ? 'selected': '' }}>merbivore</option>
+                            <option value="mono_industrial" {{ settings.theme=='mono_industrial' ? 'selected': '' }}>mono_industrial</option>
+                            <option value="monokai" {{ settings.theme=='monokai' ? 'selected': '' }}>monokai</option>
+                            <option value="pastel_on_dark" {{ settings.theme=='pastel_on_dark' ? 'selected': '' }}>pastel_on_dark</option>
+                            <option value="solarized_dark" {{ settings.theme=='solarized_dark' ? 'selected': '' }}>solarized_dark</option>
+                            <option value="solarized_light" {{ settings.theme=='solarized_light' ? 'selected': '' }}>solarized_light</option>
+                            <option value="sqlserver" {{ settings.theme=='sqlserver' ? 'selected': '' }}>sqlserver</option>
+                            <option value="terminal" {{ settings.theme=='terminal' ? 'selected': '' }}>terminal</option>
+                            <option value="textmate" {{ settings.theme=='textmate' ? 'selected': '' }}>textmate</option>
+                            <option value="tomorrow_night_blue" {{ settings.theme=='tomorrow_night_blue' ? 'selected': '' }}>tomorrow_night_blue</option>
+                            <option value="tomorrow_night_bright" {{ settings.theme=='tomorrow_night_bright' ? 'selected': '' }}>tomorrow_night_bright</option>
+                            <option value="tomorrow_night_eighties" {{ settings.theme=='tomorrow_night_eighties' ? 'selected': '' }}>tomorrow_night_eighties</option>
+                            <option value="tomorrow_night" {{ settings.theme=='tomorrow_night' ? 'selected': '' }}>tomorrow_night</option>
+                            <option value="tomorrow" {{ settings.theme=='tomorrow' ? 'selected': '' }}>tomorrow</option>
+                            <option value="twilight" {{ settings.theme=='twilight' ? 'selected': '' }}>twilight</option>
+                            <option value="vibrant_ink" {{ settings.theme=='vibrant_ink' ? 'selected': '' }}>vibrant_ink</option>
+                            <option value="xcode" {{ settings.theme=='xcode' ? 'selected': '' }}>xcode</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Font Size</th>
+                    <td>
+                        <select name="font_size" id="font_size">
+                            {% for font in font_size %}
+                            <option value="{{ font }}" {{ settings.font_size == font ? 'selected' : '' }}>{{ font }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Wrap Text</th>
+                    <td>
+                        <select name="wrap_text" id="wrap_text">
+                            <option value="true" {{ settings.wrap_text == true ? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ settings.wrap_text == false ?  'selected': '' }}>No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Soft Tab</th>
+                    <td>
+                        <input type="number" name="soft_tab_size" id="soft_tab_size" value="<?php echo $soft_tab_size;?>" style="width: 50px">
+                        <select name="soft_tab" id="soft_tab">
+                            <option value="true" {{ settings.soft_tab==true? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ settings.soft_tab==false? 'selected' : '' }}>No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Show Invisible</th>
+                    <td>
+                        <select name="show_invisible" id="show_invisible">
+                            <option value="true" {{ settings.show_invisible==true? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ settings.show_invisible==false? 'selected' : '' }}>No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Show Line Number</th>
+                    <td>
+                        <select name="show_gutter" id="show_gutter">
+                            <option value="true" {{ settings.show_gutter==true? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ settings.show_gutter==false? 'selected' : '' }}>No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Show Indent Guides</th>
+                    <td>
+                        <select name="show_indent" id="show_indent">
+                            <option value="true" {{ settings.show_indent==true? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ settings.show_indent==false? 'selected' : '' }}>No</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <a class="btn btn-danger btncloseDiv">Close</a>
+        </div>
+        <div id="uploader">
+            <form id="fileupload" action="./uploadHandler.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="directory" value="" id="directory">
+                <div class="row fileupload-buttonbar">
+                    <div class="col-lg-7">
+                        <span class="btn btn-success fileinput-button">
+                            <span>Add files...</span>
+                            <input type="file" name="files[]" multiple>
+                        </span>
+                        
+                        <button type="button" class="btn btn-danger delete">
+                            <span>Delete</span>
+                        </button>
+
+                        <button type="button" class="btn btn-info extract">
+                            <span>Extract</span>
+                        </button>
+                        <input type="checkbox" class="toggle">
+                        <span class="fileupload-process"></span>
+                    </div>
+                    <div class="col-lg-5 fileupload-progress fade">
+                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                        </div>
+                        <div class="progress-extended">&nbsp;</div>
+                    </div>
+                </div>
+                <table role="presentation" class="table table-striped"><tbody class="files" id="fileLists"></tbody></table>
+            </form>
+
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+
+            {% for (var i=0, file; file=o.files[i]; i++) { %}
+                <tr class="template-upload">
+                    <td>
+                        <span class="preview"></span>
+                    </td>
+                    <td>
+                        <p class="name">{%=file.name%}</p>
+                        <strong class="error text-danger"></strong>
+                    </td>
+                    <td>
+                        <p class="size">Processing...</p>
+                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+                    </td>
+                    <td>
+                        {% if (!i) { %}
+                            <button class="btn btn-warning cancel">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                <span>Cancel</span>
+                            </button>
+                        {% } %}
+                    </td>
+                </tr>
+            {% } %}
+
+        </div>
+        <div id="imageEditor"><img /></div>
+        <div id="docViewer"></div>
+  </main>
+</div>
+{% endblock %}
