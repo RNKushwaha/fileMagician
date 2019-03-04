@@ -127,6 +127,7 @@ else $show_indent = true;
                           echo '<tr><th>PHP Version </th><td>'.phpversion()."</td></tr>";
                           echo '<tr><th>Server Timezone </th><td>' . date_default_timezone_get().'</td></tr>';
                           echo '<tr><th>Server Time </th><td>' .strftime("%A, %B %d, %Y, %X %Z").'</td></tr>';
+                          echo '<tr><th>Server Max. Upload Size </th><td>' .ini_get('upload_max_filesize').'</td></tr>';
                     ?>
                     </table>
                     <a class="btn btn-danger btncloseDiv">Close</a>        
