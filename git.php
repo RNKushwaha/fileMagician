@@ -3,8 +3,8 @@ require_once 'init.php';
 require_once 'vendor/autoload.php';
 
 $repository = Gitonomy\Git\Admin::init(__DIR__, false);
-echo '<pre>';
-echo $size = $repository->getSize();echo "kb";
+// echo '<pre>';
+// echo $size = $repository->getSize();echo "kb";
 
 $head = $repository->getHead(); // Commit or Reference
 $head = $repository->getHeadCommit(); // Commit
@@ -16,11 +16,11 @@ if ($repository->isHeadDetached()) {
 // print_r($head);
 
 $log = $repository->getLog('master');
-$log = $repository->getLog('master', 'vendors/cruzersoftwares/css/style.css', 0, 10);
-print_r($log);
-$revision = $repository->getRevision('master@{12 days ago}');
+// $log = $repository->getLog('master', 'vendors/cruzersoftwares/css/style.css', 0, 10);
+// print_r($log);
+// $revision = $repository->getRevision('master@{12 days ago}');
 // Returns 100 lasts commits
-$log = $revision->getLog(null, 10);
+// $log = $revision->getLog(null, 10);
 
 
 $blame = $repository->getBlame('master', 'README.md');
