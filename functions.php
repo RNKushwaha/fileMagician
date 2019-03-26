@@ -11,8 +11,8 @@ if( !defined('_ACCESS_OK') ){
 }
 
 // update this path to load the image correctly for edit purpose
-if( !defined(SERVER_IMG_PATH) ){
-  define('SERVER_IMG_PATH', 'https://cruzersoftwares.com/');
+if( !defined('SERVER_IMG_PATH') ){
+  define('SERVER_IMG_PATH', 'http://localhost/');
 }
 
  //load css, js and images with last modified time appended to the url

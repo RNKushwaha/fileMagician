@@ -139,7 +139,7 @@ class fs
 						'sizeByte'     => number_format($filesize),
 						'size'       => $this->formatSizeUnits($filesize),
 						'path'       => $dir,
-						'hostUrl'   => $this->get_full_url_parent(),
+						'hostUrl'   => defined('SERVER_IMG_PATH') ? SERVER_IMG_PATH : $this->get_full_url_parent(),
 						'height'     => $height,
 						'width'      => $width,
 						'permission' => $filePer,
@@ -183,8 +183,24 @@ class fs
 					$dat['content'] = 'https://docs.google.com/viewer?url='.$this->get_full_url_parent().$id;
 					break;
 				default:
-					$dat['content'] = 'File not recognized: '.$this->id($dir);
+					clearstatcache();
+					$filePer = substr(sprintf('%o', fileperms($dir)), -4);
+					$filesize = filesize( $dir );
+					$dat['info'] = array(
+						'sizeByte'   => number_format($filesize),
+						'size'       => $this->formatSizeUnits($filesize),
+						'path'       => $dir,
+						'hostUrl'   => $this->get_full_url_parent(),
+						'permission' => substr(sprintf('%o', fileperms($dir)), -4),
+						'permissionFull' => $this->convert_perms_to_rwx($filePer,$dir),
+						'created'   => date ("Y-m-d H:i:s", filectime($dir)),
+						'modified'   => date ("Y-m-d H:i:s", filemtime($dir)),
+						'accessed'   => date ("Y-m-d H:i:s", fileatime($dir)),
+					);
+					$dat['content'] = base64_encode(file_get_contents($dir));
 					break;
+					// $dat['content'] = 'File not recognized: '.$this->id($dir);
+					// break;
 			}
 			return $dat;
 		}
