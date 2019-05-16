@@ -107,11 +107,18 @@ else $show_indent = true;
                     </div>
                 </div>
                 <div id="tabs">
-                   <ul class="nav nav-tabs" id="filesTab" role="tablist">
-                        <li class="nav-item" id="newTab" style="margin-left:10px">
-                            <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
-                        </li>
-                    </ul>
+                    <div class="menu-wrapper">
+                        <ul class="nav1 nav-tabs1 menu" id="filesTab" role="tablist">
+                            <li class="nav-item" id="newTab" style="">
+                                <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
+                            </li>
+                            <li class="nav-item" style=""><a class="nav-link"> &nbsp; </a></li>
+                        </ul>
+                        <div class="paddles">
+                            <button class="left-paddle paddle btn btn-primary"> < </button>
+                            <button class="right-paddle paddle btn btn-primary"> > </button>
+                        </div>
+                    </div>
                     <div class="tab-content" id="myTabContent">
                         
                     </div>
@@ -383,5 +390,28 @@ else $show_indent = true;
     <script type="text/javascript" src="vendor/bootstrap/js/popper.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
     <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+    <script>
+    var scrollDuration = 500;
+    var scrollWidth = 250;
+    var leftPaddle = document.getElementsByClassName('left-paddle');
+    var rightPaddle = document.getElementsByClassName('right-paddle');
+
+    // get how much have we scrolled to the left
+    var getMenuPosition = function() {
+        return $('.menu').scrollLeft();
+    };
+
+    $(rightPaddle).on('click', function() {
+        var scb = scrollWidth+getMenuPosition();
+        if(scb<0) scb=sc;
+        $('.menu').animate( { scrollLeft: + scb }, scrollDuration);
+    });
+
+    $(leftPaddle).on('click', function() {
+        var scb = $('.menu').scrollLeft()-scrollWidth;
+        if(scb<0) scb=-scrollWidth;
+        $('.menu').animate( { scrollLeft: +scb }, scrollDuration);
+    });
+    </script>
 </body>
 </html>
