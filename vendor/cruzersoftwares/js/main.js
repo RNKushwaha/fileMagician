@@ -254,7 +254,9 @@ function eraseCookie(name) {
         var getAllEditorIDs = function(){
             var ids = [];
             $(document).find('#filesTab a.nav-link:not(#new-tab)').each(function(){
-                ids.push( $(this).attr('href').replace('#', '') );
+                if( $(this).attr('href') ){
+                    ids.push( $(this).attr('href').replace('#', '') );
+                }
             })
             return ids;
         }
