@@ -106,11 +106,18 @@ else $show_indent = true;
                     </div>
                 </div>
                 <div id="tabs">
-                   <ul class="nav nav-tabs" id="filesTab" role="tablist">
-                        <li class="nav-item" id="newTab" style="margin-left:10px">
-                            <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
-                        </li>
-                    </ul>
+                    <div class="menu-wrapper">
+                        <ul class="nav1 nav-tabs1 menu" id="filesTab" role="tablist">
+                            <li class="nav-item" id="newTab" style="">
+                                <a class="nav-link" id="new-tab" data-id="0" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">+</a>
+                            </li>
+                            <li class="nav-item muted"></li>
+                        </ul>
+                        <div class="paddles">
+                            <button class="left-paddle paddle btn btn-primary"> < </button>
+                            <button class="right-paddle paddle btn btn-primary"> > </button>
+                        </div>
+                    </div>
                     <div class="tab-content" id="myTabContent">
                     </div>
                 </div>

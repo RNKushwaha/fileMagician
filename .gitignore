@@ -1,0 +1,11 @@
+.project
+.settings
+.buildpath
+.idea
+.scannerwork
+sonar-project.properties
+composer.lock
+composer.phar
+errors.log
+vendor/symfony
+vendor/composer

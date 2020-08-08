@@ -66,6 +66,28 @@ function eraseCookie(name) {
 
 ;$(function () {
     try{
+        var scrollDuration = 500;
+        var scrollWidth = 250;
+        var leftPaddle = document.getElementsByClassName('left-paddle');
+        var rightPaddle = document.getElementsByClassName('right-paddle');
+
+        // get how much have we scrolled to the left
+        var getMenuPosition = function() {
+            return $('.menu').scrollLeft();
+        };
+
+        $(rightPaddle).on('click', function() {
+            var scb = scrollWidth+getMenuPosition();
+            if(scb<0) scb=sc;
+            $('.menu').animate( { scrollLeft: + scb }, scrollDuration);
+        });
+
+        $(leftPaddle).on('click', function() {
+            var scb = $('.menu').scrollLeft()-scrollWidth;
+            if(scb<0) scb=-scrollWidth;
+            $('.menu').animate( { scrollLeft: +scb }, scrollDuration);
+        });
+
         uploadButton = $('<button/>')
             .addClass('btn btn-primary')
             .prop('disabled', true)
@@ -254,7 +276,9 @@ function eraseCookie(name) {
         var getAllEditorIDs = function(){
             var ids = [];
             $(document).find('#filesTab a.nav-link:not(#new-tab)').each(function(){
-                ids.push( $(this).attr('href').replace('#', '') );
+                if( $(this).attr('href') ){
+                    ids.push( $(this).attr('href').replace('#', '') );
+                }
             })
             return ids;
         }
@@ -683,13 +707,13 @@ function eraseCookie(name) {
         }).resize();
 
         var to = false;
-          $('#searchString').keyup(function () {
+        $('#searchString').keyup(function () {
             if(to) { clearTimeout(to); }
             to = setTimeout(function () {
               var v = $('#searchString').val();
               $('#fileTree').jstree(true).search(v);
             }, 250);
-          });
+        });
 
         $('#fileTree')
             .jstree({
@@ -922,18 +946,6 @@ function eraseCookie(name) {
                                     $('#metadata label[for=contains],#metadata label[for=line],#metadata label[for=dimension],#metadata label[for=line],#editImage').hide();
                                     break;
                                 default:
-                                    /*$('#tabs').show();
-                                    $('#uploader,#imageEditor,#info,#docViewer').hide();
-                                    $configureEditor(fileid, d.type, d.content);
-                                    $('#metadata label[for=size] span').text(d.info.size);
-                                    $('#metadata label[for=permission] span').text(d.info.permissionFull);
-                                    $('#metadata #updatePermission').val(d.info.permission);
-                                    $('#metadata label[for=created] span').text(d.info.created);
-                                    $('#metadata label[for=lastmodified] span').text(d.info.modified);
-                                    $('#metadata label[for=line]').show();
-                                    $('#metadata label[for=contains],#metadata label[for=dimension],#editImage').hide();
-                                    break;*/
-                                    
                                     $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
                                                 <strong>Warning!</strong> The file format is not supported yet!
