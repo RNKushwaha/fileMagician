@@ -28,7 +28,7 @@
         <script type="text/javascript" src="<?php loadStaticResource('vendor/tui/js/black-theme.js');?>"></script>
         <script type="text/javascript" src="<?php loadStaticResource('vendor/jquery/js/jquery-3.2.1.min.js');?>"></script>
         <script>
-         var fileName = '<?php echo $_REQUEST['image']?>';
+         var fileName = '<?php echo isset($_REQUEST['image']) ? $_REQUEST['image'] : ''?>';
          var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
              includeUI: {
                  loadImage: {
