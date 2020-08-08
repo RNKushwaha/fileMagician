@@ -1383,42 +1383,44 @@ class UploadHandler
             );
         }
 
-        $dir  = ROOT.$this->options['file_dir'];
         /*$io   = popen ( '/usr/bin/du -sk ' . $dir, 'r' );
         $folderSize = fgets ( $io, 80);
         $folderSize = substr ( $folderSize, 0, strpos ( $folderSize, "\t" ) );
         pclose ( $io );*/
-        $folderSize = $this->GetDirectorySize($dir);
 
-        $io   = popen ( '/usr/bin/find '.$dir.' -mindepth 1 -type d -print| wc -l', 'r' );
-        $folderCount = fgets ( $io, 80);
-        pclose ( $io );
-        
-        $totalFiles = array();
-        $path = realpath($dir);
-        try{
-            foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path)) as $filename) {
-                if(!in_array($filename->getFileName(),['.','..'])){
-                    $totalFiles[] = $filename->getFileName();
-                }
+        // $io   = popen ( '/usr/bin/find '.$dir.' -mindepth 1 -type d -print| wc -l', 'r' );
+        // $folderCount = fgets ( $io, 80);
+        // pclose ( $io );
+        /*foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path)) as $filename) {
+            if(!in_array($filename->getFileName(),['.','..'])){
+                $totalFiles[] = $filename->getFileName();
             }
-        }catch(Exception $e){
-            
+        }*/
+
+        $dir  = ROOT.$this->options['file_dir'];
+        $path = realpath($dir);
+        $folderSize = $this->GetDirectorySize($dir);
+        $folderCount = count( glob($path."/*", GLOB_ONLYDIR) );
+        $totalFiles = scandir($path);
+
+        foreach ($totalFiles as $key => $link) {
+            if(is_dir($dir.DIRECTORY_SEPARATOR.$link)){
+                unset($totalFiles[$key]);
+            }
         }
-       
+        
         $filePer = substr(sprintf('%o', fileperms($dir)), -4);
         $response['info'] = array(
-            'sizeByte'          => number_format($folderSize),
-            'size'            => $this->formatSizeUnits($folderSize),
-            'path'            => $dir,
+            'sizeByte'       => number_format($folderSize),
+            'size'           => $this->formatSizeUnits($folderSize),
+            'path'           => $dir,
             'hostUrl'        => $this->get_full_url_parent(),
-            'permission'      => substr(sprintf('%o', fileperms($dir)), -4),
+            'permission'     => substr(sprintf('%o', fileperms($dir)), -4),
             'permissionFull' => $this->convert_perms_to_rwx($filePer,$dir),
-            'created'         => date ("Y-m-d H:i:s", filectime($dir)),
-            'modified'        => date ("Y-m-d H:i:s", filemtime($dir)),
-            'accessed'        => date ("Y-m-d H:i:s", fileatime($dir)),
+            'created'        => date ("Y-m-d H:i:s", filectime($dir)),
+            'modified'       => date ("Y-m-d H:i:s", filemtime($dir)),
             'totalFiles'     => count($totalFiles),
-            'folderCount'     => trim($folderCount)
+            'folderCount'    => $folderCount
         );
 
         return $this->generate_response($response, $print_response);

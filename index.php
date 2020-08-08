@@ -34,10 +34,9 @@ else $show_indent = true;
         <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
         <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
-        <link rel="stylesheet" href="<?php loadStaticResource('vendor/bootstrap/css/bootstrap.min.css');?>">
-        <link rel="stylesheet" type="text/css" href="<?php loadStaticResource('vendor/cruzersoftwares/css/style.css');?>" />
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/cruzersoftwares/css/style.css" />
     </head>
-    
     <body>
     <div id="msg"></div>
     <div class="container-fluid">
@@ -73,10 +72,10 @@ else $show_indent = true;
                             <a class="dropdown-item" href="https://cruzersoftwares.github.io/fileMagician/" target="_blank">Check for Update</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a id="infoHandler" class="icon_custom nav-link" title="Server Information"><i class="fas fa-info-circle fa-lg"></i></a></li>
-                    <li class="nav-item"><a id="settingsHandler" class="icon_custom nav-link" title="Settings"><i class="fas fa-cog fa-lg"></i></a></li>
-                    <li class="nav-item"><a id="refreshHandler" class="icon_custom nav-link" title="Refresh List"><i class="fas fa-sync-alt fa-lg"></i></a></li>
-                    <li class="nav-item"><a href="logout.php" id="refreshHandler" class="icon_custom nav-link" title="Log Out"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
+                    <li class="nav-item"><a id="infoHandler" class="icon_custom nav-link" title="Server Information"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACO0lEQVQ4T2NkQAO9vb0J////j2dgYHBAkzrAyMi4sLi4eAGyOCOM09/fr/D379/1fHx8BlZWVgyysrIMfHx8YOlPnz4xPH78mOHYsWMg9gVmZubAwsLCByA5sAFQzee1tbUFPDw8GB6+/81w6N5Xhofvf4ENkBdkY7BT4maQF2Rl2LFjB8PVq1c/MDMzG4IMARvQ09MD0mwA0rzwzHuGHTc+gzUWO4gyPHz3i2HNpY9gvocGL0O8iSDMkAslJSWGjCA/8/Lyzk9NTWVYcOodw9brn+BezLYWYXj15Q/D6osf4GLemnwMCWZCDLNnz2b4/PlzImNPT89+Dw8PBy5JVYbiDU/Qw5RBjIcFbAgy6A2QYfj2/DbIJQdABvwH2b7q6i+GzVcQNvnpCDA4qfEyfP31j6F6y1MUA3x1BBjCtNnArgAbUFxczFCx6QnD5Wff4Ap1JTkZCp0kGF59/sNQsekxigG6UlwMHX4yDL29vQgDStc/Yrj0FGEASEd3oBxYI0gOGehJc4Hl4AaAvLDkwjeGteffoSjsC5YH84vWPkQRDzYUYogx4IJ7ARyI7GLKDMmL76AonBiqCObnr76PIj43VoXh56u7kEBEjsaJ+54xrDrzBqzYTpWPodpLFsxu3faY4dBtSPSGmYgw5DtJIaIRPSH173nKsOLUKwYjeR4UW889/MIQYSbGUOgijZqQQKrQk/Ktl98ZNl98y3DzBSRQ1SW4GHz1hRnUxDmxJ2UkQ8jLTCipjMTsDABuRSCAwFnNyAAAAABJRU5ErkJggg==" /></a></li>
+                    <li class="nav-item"><a id="settingsHandler" class="icon_custom nav-link" title="Settings"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC90lEQVQ4T5WTT0giURzHfzOjo25qBBtLdIjQmHNREFFUFz3MeGjJKDpuLCwIgv0xc5UhUUMrDy3txT12UYpMMooF2UOHyFuX8jBdpFOw2LTruM7MW96wiht72Xd6b378vu8z39/3EdC2MpkMNTc3pyQSiV0AWGorpdfW1nw8z9M8z/9q7yGah0QiMYkQygPAAUJocWVlxdKsbW9viwCQpihqSZblt4FA4GuzpgnEYrFJnU6X5zjO1Gg0UKFQkF4KOBwOo9lsJnK5XE1RlJYIgbGMRuOjy+UyDQwM6FRVhVKppIqiSIqiCFarFcxmszoyMkISBAGCIMjHx8c1SZJe49/RCDY3Nz9zHPeOYRj95eUlmEwmYBgGOjs7oVqtwt3dHdTrdRgbG4NyudzI5/MSwzBd2C9M0DJsamqqw2AwkP39/erJyYn08PCg9PT0UBzHGQVBIBFCarFY/IEQwvemeZ73EaFQ6CkQCGiGXVxcwPj4OBweHv6sVCr+SCTyKRQKve/t7U3Nzs6+urq6gunpac2/eDwuRiIRKxEMBp82NjYsWLVQKADLspBMJsVqtfomlUrV3G43xTDMd3zJ+fk5OJ1OTSAWi4nRaNRKrK+vPwWDQY2gWCzC6OgoYKcFQfgYj8d3/X6/t6+vL4YJSqUSTExMaALRaFTc2tqyEqurqy0PHA5HB03TpM1mU8/Ozurlclm22Ww6lmUN9/f3pKqq6unp6Y8/GUgnk0mfNoXl5eVdlmU9g4OD+uvra9Dr9WC328FisQAepSAIIMsyDA0Nwc3NTSOXy33Z2dn5gHu1HIii+Dg/P2+y2+067AXOgaqq5PPzsyZCkqQyPDxM4Ybb21s5k8nUKpVKVzabVTQCr9frJEkyu7CwYJIkCR0dHUnhcLgVZZ7nxZmZGSNN00Q2m8VJdO3t7X3TCJqZ9ng8ToqisphAURQcrpZAOBwWCYI4IElyESHUav5LAB/cbjcNAEp3d3fy5Wvc39/34ZFi7H++xvaP/7P/DYk4ZCC622bVAAAAAElFTkSuQmCC"/></i></a></li>
+                    <li class="nav-item"><a id="refreshHandler" class="icon_custom nav-link" title="Refresh List"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVQ4T6VSQUgiYRR+/8yupmYdWliwxWPOacFzICxI0CothO7FCGFLNpBFwkHcdJyU0IgNNohhwd1T0CHxEJQnJYWCbt7CDuLFJUIQZlpdTedf/slKW7YO+98e33vf+973fwj+86GH88FgkKFpegFj/A4AXvbwnwihdKfTSSYSifL5+TmuVCowNTWFBggCgcBnnU4XtFgsKoZhnut0OgWXJAmfnZ1dFwqF9ujo6HC9XpfUarU+FArdE7Asu8kwzMfp6ekhrVb7l7JbpfF4HDiOA57npY2NjRGl0efzrZvN5k82m22I1OVyuXN8fNyuVqsyqcfHxymXy6XtPzcSiUiCIIwgr9dr0Ov1Ja/XO0zTNOTz+VahUDgEgKRGo8mTocvLyx9Go/H9/Pz8HUc0GpV2dnZuFHg8nnUA+AAAKjJI03RMEIQ6wYhhfr9fCofD+n4FsVhM2t/fvyF47NntdtyPNxoNqVcnc7ncskLAcdwmxnihv5G4TGri9GMLFJBlWZHn+QGJxOXFxUX9xMQEmp2dfYUxXgYAsqSNEPqeTqcDZFYhWFpaEldXV+8Itra2iHHfLi4uorIsv6EoSrBarerJyUlVt9uF7e3tX7Va7fXBwUFZIZibmxM5jhtQsLKycoUQIl9Ik2AZDAaa9GYymdbp6enXTCZzr2BmZkYkLqdSKXA4HP88eXd393exWBTGxsbYvb297t0JNpsNN5vNK7vdTrJwbTKZnt2msdFo4FKp1Mlmsy1RFL8cHR3x/RuUE5xOJ15bWwO3222mKIoY9RYAXvQaawBwKMty8uTkpPhQ3pM5eConfwCJtvMRCghiWwAAAABJRU5ErkJggg=="/></a></li>
+                    <li class="nav-item"><a href="logout.php" id="refreshHandler" class="icon_custom nav-link" title="Log Out"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACOklEQVQ4T32TXUiTURjHf+ddm24iadEHEaSBEAx2YWSZ5UV0lVTgTUEQEWYXyT6sBV0Uo0sZ0/WBYNGFEFRQYWAXIRSRzQrKhCAS+oA+LTHc5jbX3hPn7IN3w3pu3ve853l/53n+5/8IKkJ6aULQiuAQ0FrYjgG3kUyIKFPWX4R1If1cAg5XQivWw2KAnuK3EkD6uQHsweaAliN2YkNZ+mWtTgyIOO0+B+ODi+QW1Zf7YoCD6kUDSifXrRccG3WxokFwZnmiDKBgX6dMrnQs8PuzBHQlQgZwI4npk3tf1LDOYzD3yeR8Q7IMcO5jDfUbDA2JbEnqSiQ7hPQTAnrZ2WOn82I18R+SPk+SxIwsAzjrBMFJl4bc9Wd4HFW9RBTgAbAN77iLxu02bh1P6/5VWDVQa/e+ZXSNOPnwNMeFtgVgQgFmATvhTK1u4+yahD59KYDaV3npeak1gvj/AQeuVmvQza60fhYB2RScdsWBlAI8ATwEX+cFtLZQaYhiC19e5Qg3qxYmhfQRRtDNrqCDvX1VJH/lRZz/lm+jGFYRR05meBRRIg4K6WUzBg91eade1rDWbWjIvWCGd2N/MHPQ2GZjf7hK38D3Nybh5vw1Qnu5kVZuNOgedbJ6k7GknWfemgx1pJh9b5aMVEyUPu4g2I3dibbt1qN2VjXlQT+nTZ5dy+q7VwJKxkSUzpKVtZ1DGMxxuTCF/54nyXXqOSFCqCrys2ANGaAFqSdSjXJTYW8aiCEYFv08t+b/BbJM7zmKOr0oAAAAAElFTkSuQmCC" ></a></li>
                 </ul>
             </div>
             </nav>
@@ -101,7 +100,7 @@ else $show_indent = true;
                         <label for="line">Line: <span></span></label>
                         <label for="permission">Permission: <span></span>
                             <input type="text" class="input input-sm" value="" required="required" id="updatePermission">
-                            <a id="updatePermissionBtn"><i class="fas fa-check-circle fa-lg"></i></a>
+                            <a id="updatePermissionBtn"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqUlEQVQ4T6WTW0iTYRjH/99pc9MN576yltoBYenMXJgijZT0opslZCDqnRddhBRosItCRlAwSCGJIKPu1IIKrCspOuBEDI2gVMwzzXma25rbt9O374tvh3INuumF5+Z9nv/vfZ8Tgf88RIZ+iNWBIi5CxBkQKIz7RfwAgTHExJdocTn3atIBz1hzFiPv1Ov0xYfZwrwceU6WCCAQ9odWtlfdc+vzC+FouBfNrtcpyB/AIGtWK9TWOsPZEhqUguf5tM/RNI2wEAl+nBmd9Yf8VrQmIAnAEKuTgxloqKivjoVjCkEQMjIbMT7F+S8tECgh+OHb6ESUiLZJ6SQAT7QdZcdKLfnZ+QWRSCRDfK/sNozqsvj9uU9NcHgcjnnnog3tO/cTgH7NYK2xrjG4yylT6mg0Cj/nh7XoOmo0lZBSuPH1Dka23kOlUXGLW4vDuOxpTQAe5NrrTzfUeL1ecrLhDYqen0QgGMApdTn6y3vi4scrA+hbfhQPVyqUwprLMY4rXlMC0Jdrr62qq2lmL5AmrhIUReHa6k08PH4XDM3gncuOru/dEMhEbWS0TNh0bIzjagrQox40VJxoXP+5oRzVvwLDMPFXJZvnlnBpph2Q7SlNVOQ8SzvD6PIlU7CpO7RHWAuZTxfwOzymjG9/AwxTJiA7va4hh98RXA/ZYPEli2hT6iiCGWCrDlRHs3iFuCViutIOw6QJ2J8uFvyxoO+ze0IUY22wcMk2SjHdSjOtpK0qk7aEUJEKcU0EDv0l9vHB3TH3rMAJVtzi9gxSKq5JbiaOEp3ykuximV6ZR2noLMkV8/ChyBznDs8GFsRlsRcvwhmjTAPQAmChow+iVDBhn2gATeribF5wYpuYxgxph5PfBLANwCV5UrtASu1NmgT714lJ+wWAAyD8AhbJDCA03+U6AAAAAElFTkSuQmCC"/></a>
                         </label>
                         <a href="imageEditor.php?image=" target="_blank" class="btn btn-primary btn-sm" id="editImage">Edit Image</a>
                     </div>
@@ -113,7 +112,6 @@ else $show_indent = true;
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        
                     </div>
                 </div>
                 <div id="info">
@@ -334,7 +332,7 @@ else $show_indent = true;
                             <td>
                                 {% if (file.deleteUrl) { %}
                                     <button class="btn btn-danger btn-outline-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                                        <i class="fas fa-trash"></i>
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABuklEQVQ4T32TOY7CQBBFi5gMEbBvgUXEEnCJmWNwCI6AIEHIGBuQBZeYOQghq1jEKpDIWIx69EvqHhjDWGq5uv3r1e/usof+eSqVihgMBqRpGpVKJc8r6ctFCIvFopCJEmTbtkv/tGDbtrjf7+Q4Do/b7cbv6/XKsZxjrVarca4C9Ho9USgUWHS5XNQ4n8+EgTX5BnAymZCu6x4F6Ha7XF06kBUhlm4eHUDXaDR+AbBTLpdFOp1WlpGMgeoyBmw+n5M8j6czaLfbIp/Psz1USyaT1O/3OTkYDNLxeOR4OByy/aczwKTVaolcLsei2WxGiUSCttstVwyHw3Q4HPjbaDR6DbAsiwGwvFgsKBaL0W63Y0AkEqH9fs/OAMD+XQ5M0xTZbJarLJdLikaj7AAwxAAAPh6PyTAMN8AwDHaA61qv11xVAuAGsbzCt4BMJsMiAEKhECfBTTwep81mowDNZtPtQNd1AQBsYu84eSQBgBsBVDowTdMNqNfrDIAI+w0EAmoLqVSKVqsVf5tOp/QW4PP5yO/3qwZ6bGsJRj9YluV20Ol0vk6n08ffH+qxhdGJXq/3u1qtfuIafwDkZqQgnPMDpQAAAABJRU5ErkJggg==" class=""/>
                                     </button>
                                     <input type="checkbox" name="delete" value="1" class="toggle">
                                 {% } %}
@@ -352,7 +350,8 @@ else $show_indent = true;
 
     <link rel="stylesheet" href="vendor/jstree/themes/default/style.min.css" charset="utf-8"/>
     <link rel="stylesheet" href="vendor/jquery/css/jquery-ui.1.12.1.min.css" charset="utf-8">
-    <!-- <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js" charset="utf-8"></script> -->
+    <link rel="stylesheet" href="vendor/blueimp/css/gallery.min.css" charset="utf-8">
+    
     <script type="text/javascript" src="vendor/jquery/js/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/jquery/js/jquery-ui.1.12.1.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/jstree/jstree.min.js" charset="utf-8"></script>
@@ -361,10 +360,6 @@ else $show_indent = true;
     <script type="text/javascript" src="vendor/ace/ext-language_tools.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/ace/keybinding-vim.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/ace/keybinding-emacs.js" charset="utf-8"></script>
-    
-    <link rel="stylesheet" href="vendor/blueimp/css/gallery.min.css" charset="utf-8">
-    <link rel="stylesheet" href="vendor/blueimp/css/jquery.fileupload.css" charset="utf-8">
-    <link rel="stylesheet" href="vendor/blueimp/css/jquery.fileupload-ui.css" charset="utf-8">
 
     <script type="text/javascript" src="vendor/blueimp/js/vendor/jquery.ui.widget.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/blueimp/js/tmpl.min.js" charset="utf-8"></script>
@@ -379,9 +374,9 @@ else $show_indent = true;
     <script type="text/javascript" src="vendor/blueimp/js/jquery.fileupload-video.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/blueimp/js/jquery.fileupload-validate.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/blueimp/js/jquery.fileupload-ui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<?php loadStaticResource('vendor/cruzersoftwares/js/main.js');?>" charset="utf-8"></script>
+
+    <script type="text/javascript" src="vendor/cruzersoftwares/js/main.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/bootstrap/js/popper.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
-    <script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
 </body>
 </html>

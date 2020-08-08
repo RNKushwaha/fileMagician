@@ -399,14 +399,9 @@ function eraseCookie(name) {
             $('#myTabContent').append('<div id="editor_'+tabId2+'" class="editor tab-pane fade ace_editor ace_hidpi ace-dawn" role="tabpanel" style="font-size: 12px; left: 250px;"></div>');
             $(document).find('.editor').removeClass('active').removeClass('show');
             $(document).find('#filesTab a.nav-link').removeClass('active');
-            $(document).find('#filesTab li a#new-tab').parent().before('<li class="nav-item"><a id="link_'+tabId2+'" class="nav-link active" title="'+tabId+'" data-toggle="tab" role="tab" aria-controls="'+tabId+'" aria-selected="true" href="#editor_'+tabId2+'">'+tabId+'&nbsp;&nbsp; <svg class="svg-inline--fa fa-times fa-w-11" aria-hidden="true" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg> </a></li>');
+            $(document).find('#filesTab li a#new-tab').parent().before('<li class="nav-item"><a id="link_'+tabId2+'" class="nav-link active" data-new="1" title="'+tabId+'" data-toggle="tab" role="tab" aria-controls="'+tabId+'" aria-selected="true" href="#editor_'+tabId2+'">'+tabId+'&nbsp;&nbsp; <img class="svg-inline--fa" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACmklEQVQ4T6WTX0hTcRTHv3f37r+Mac5qZmDT5grmg46h6ZOCimxoBWG+FfQQ0oNEvsXobRA+RPQQ1JtJD4kYqDAMKdFUCENyDSfS/jnmGG7Wvft37y/ubXc4qacOHPjxO7/v53fO+Z0fhf806rR+GjDTwHUK6CTARTFOASECrPLAzAgQO6mpALwFXEqtdvyS3d5kbm6u0RoMGkIIuEwmG9vdTe1vbwcLHDd5C3gvQ8qAN4BLbzR6nIODNsIw2mKxWJEcwzDgczluc2HBz6XTntsliAR4BZj1Gs1Up9vt5AoF7eWZGXwfGqoAtMzOIjA8DIYQbnNxcZ3N5UbvAjEJ8BoYa2lrm9DX1V2wz8+XhZs9PdLasbRU3tvq70cqHI782Nnx3gGeS4CXwHRHX587eXSkSyaTuBkMIpvNIp1Og2VZ8DwPhUKBD+3tUCqVqK2uZmOBwNw9YEQCvABWrg0MdCQSCQVfKOAgGkWrzweapiWBSqXCR4cDdCkPfVWVkAiH1+4DXRLgmQjo7e2Ih0IKNpUC4XlYl5fLYhHwubW1XIZSrRbC8fjaAxnwFJhut9vdPyMRHQhBwymx+AKib1itEqRAUexeKjX3UC7BC4w1mkyPzlJUg9HnK9/81eGQBN2BgAQQbctiQTibjcQ5zjshN9ELmCmannKaTM50Pq+9srGBHYcDdaWkEwC69vawYrFAJwjcl0xmnRAyOiE/o3juMeDSMYyny2CwZQBtPSEVcxAFUCUI3OrxsZ8VBM+Tk4Mkn7wBuBopatymVjdZVaoaI01rxNgRz2cD+XzKn8sF9wmZfPeXURYLPAOgth44ZwO6TcBVGjgvAnjg4BD45gc+RQGxokMASQBF+S8oAOhK/qdb/zYewC8ALADhN+QiACBv5lW6AAAAAElFTkSuQmCC"/></a></li>');
             $(document).find('#editor_' + tabId2).addClass('active').addClass('show');
-            //move cursor to the previous position
             $configureEditor(tabId2, 'txt', '');
-            // var editor = ace.edit('editor_'+tabId2);
-            // editor.getSession().setMode("ace/mode/text");
-            // editor.setShowPrintMargin(false);
-            // editor.focus();
         })
 
         //clean the DOM and editor
@@ -422,14 +417,16 @@ function eraseCookie(name) {
             liEl.remove();
             $(document).find('#' + tabId).remove();
             //show first editor opened
-            var tabIdFirst = $('#filesTab>li a.nav-link').attr('href').replace('#', '');
-            $(document).find('.editor').removeClass('active').removeClass('show');
-            $(document).find('#filesTab a.nav-link').removeClass('active');
-            $(document).find('#' + tabIdFirst).addClass('active').addClass('show');
-            $('#filesTab li:first-child a.nav-link').addClass('active');
-            //move cursor to the previous position
-            var editor2 = ace.edit(tabIdFirst);
-            editor2.focus();
+            if($('#filesTab>li a.nav-link').attr('href')){
+                var tabIdFirst = $('#filesTab>li a.nav-link').attr('href').replace('#', '');
+                $(document).find('.editor').removeClass('active').removeClass('show');
+                $(document).find('#filesTab a.nav-link').removeClass('active');
+                $(document).find('#' + tabIdFirst).addClass('active').addClass('show');
+                $('#filesTab li:first-child a.nav-link').addClass('active');
+                //move cursor to the previous position
+                var editor2 = ace.edit(tabIdFirst);
+                editor2.focus();
+            }
         };
 
         //close the editor
@@ -557,7 +554,7 @@ function eraseCookie(name) {
                     case 'tmpl': editor.getSession().setMode("ace/mode/text"); break;
                     case 'twig': editor.getSession().setMode("ace/mode/twig"); break;
                     case 'env': editor.getSession().setMode("ace/mode/text"); break;
-                    default: editor.getSession().setMode("ace/mode/text"); break;
+                    default: //editor.getSession().setMode("ace/mode/text"); break;
                 }
 
                 editor.session.setValue( Base64.decode(fileContent));
@@ -580,7 +577,7 @@ function eraseCookie(name) {
                 $(document).find('#editor_' + tabId).addClass('active').addClass('show');
                 $(document).find('#filesTab a#link_' + tabId).addClass('active');
             } else {
-                $('#newTab').before('<li class="nav-item"><a id="link_' + tabId + '" class="nav-link active" title="' + fileID + '" data-toggle="tab" role="tab" aria-controls="' + fileID+'" aria-selected="true" href="#editor_' + tabId + '">' + fileName + '&nbsp;&nbsp; <i class="fas fa-times"></i> </a></li>');
+                $('#newTab').before('<li class="nav-item"><a id="link_' + tabId + '" class="nav-link active" title="' + fileID + '" data-toggle="tab" role="tab" aria-controls="' + fileID+'" aria-selected="true" href="#editor_' + tabId + '">' + fileName + '&nbsp;&nbsp; <img class="svg-inline--fa" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACmklEQVQ4T6WTX0hTcRTHv3f37r+Mac5qZmDT5grmg46h6ZOCimxoBWG+FfQQ0oNEvsXobRA+RPQQ1JtJD4kYqDAMKdFUCENyDSfS/jnmGG7Wvft37y/ubXc4qacOHPjxO7/v53fO+Z0fhf806rR+GjDTwHUK6CTARTFOASECrPLAzAgQO6mpALwFXEqtdvyS3d5kbm6u0RoMGkIIuEwmG9vdTe1vbwcLHDd5C3gvQ8qAN4BLbzR6nIODNsIw2mKxWJEcwzDgczluc2HBz6XTntsliAR4BZj1Gs1Up9vt5AoF7eWZGXwfGqoAtMzOIjA8DIYQbnNxcZ3N5UbvAjEJ8BoYa2lrm9DX1V2wz8+XhZs9PdLasbRU3tvq70cqHI782Nnx3gGeS4CXwHRHX587eXSkSyaTuBkMIpvNIp1Og2VZ8DwPhUKBD+3tUCqVqK2uZmOBwNw9YEQCvABWrg0MdCQSCQVfKOAgGkWrzweapiWBSqXCR4cDdCkPfVWVkAiH1+4DXRLgmQjo7e2Ih0IKNpUC4XlYl5fLYhHwubW1XIZSrRbC8fjaAxnwFJhut9vdPyMRHQhBwymx+AKib1itEqRAUexeKjX3UC7BC4w1mkyPzlJUg9HnK9/81eGQBN2BgAQQbctiQTibjcQ5zjshN9ELmCmannKaTM50Pq+9srGBHYcDdaWkEwC69vawYrFAJwjcl0xmnRAyOiE/o3juMeDSMYyny2CwZQBtPSEVcxAFUCUI3OrxsZ8VBM+Tk4Mkn7wBuBopatymVjdZVaoaI01rxNgRz2cD+XzKn8sF9wmZfPeXURYLPAOgth44ZwO6TcBVGjgvAnjg4BD45gc+RQGxokMASQBF+S8oAOhK/qdb/zYewC8ALADhN+QiACBv5lW6AAAAAElFTkSuQmCC"/> </a></li>');
                 $('#myTabContent').append('<div id="editor_' + tabId + '" class="editor tab-pane fade show active" role="tabpanel"></div>');
             }
 
@@ -602,8 +599,8 @@ function eraseCookie(name) {
                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                                         </div>
                                     </div>`).show();
-                                    
-                    $.post('handler.php?action=save_content', { 'id' : fileID, 'content' :  Base64.encode(editor.session.getValue()) })
+                    var newfile = ($('#link_'+fileID).attr('data-new') == 1) ? 1 : 0;
+                    $.post('handler.php?action=save_content', { 'id' : fileID, newfile: newfile, 'content' :  Base64.encode(editor.session.getValue()) })
                     .done(function (d) {
                         var res = $.parseJSON(d);
                         if(res.success!== undefined){
@@ -632,9 +629,7 @@ function eraseCookie(name) {
             });
 
             editor.session.on('change', function (delta) {
-                // console.log(editor.container.id);
                 $('#filesTab').find('li a.active').find('.svg-inline--fa').addClass('unsaved');
-                // delta.start, delta.end, delta.lines, delta.action
             });
 
             // set to false to prevent using worker, which is needed to run this from local html file due to browser security restritions
@@ -927,7 +922,7 @@ function eraseCookie(name) {
                                     $('#metadata label[for=contains],#metadata label[for=line],#metadata label[for=dimension],#metadata label[for=line],#editImage').hide();
                                     break;
                                 default:
-                                    $('#tabs').show();
+                                    /*$('#tabs').show();
                                     $('#uploader,#imageEditor,#info,#docViewer').hide();
                                     $configureEditor(fileid, d.type, d.content);
                                     $('#metadata label[for=size] span').text(d.info.size);
@@ -937,7 +932,7 @@ function eraseCookie(name) {
                                     $('#metadata label[for=lastmodified] span').text(d.info.modified);
                                     $('#metadata label[for=line]').show();
                                     $('#metadata label[for=contains],#metadata label[for=dimension],#editImage').hide();
-                                    break;
+                                    break;*/
                                     
                                     $('#msg').html(`<div class="alert alert-warning fade in show alert-dismissible" style="margin-top:18px;">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>

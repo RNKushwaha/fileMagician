@@ -356,7 +356,7 @@ class fs
 			if (is_file($dir) && !is_writable($dir)){
 				die(json_encode(['error' => 'File '.$dir.' is not writable!']));
 			}
-			
+
 			file_put_contents($dir, base64_decode($content)) or die(json_encode(['error' => 'Could not save the file!'.$dir]));
 			die(json_encode(['success' => 'File has been saved!']));
 		}
@@ -376,6 +376,10 @@ class fs
 			file_put_contents($dir . DIRECTORY_SEPARATOR . $name, '');
 		}
 		return array('id' => $this->id($dir . DIRECTORY_SEPARATOR . $name));
+	}
+
+	public function getPath($id){
+		return $this->path($id);
 	}
 
 	public function rename($id, $name) {
@@ -527,8 +531,19 @@ if(isset($_POST) && isset($_POST['img'])){
 } elseif(isset($_GET['action'])) {
 	$fs = new fs( dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 	$node = isset($_POST['id']) && $_POST['id'] !== '#' ? $_POST['id'] : '/';
-	$rslt = $fs->save_file($node, $_POST['content']);
-
+	// check if file is new then create the empty file first and then update the content as usual
+	if(isset($_POST['newfile']) && $_POST['newfile']){
+		$node = str_replace('__txt', '.txt', $node);
+		$nodesAr = explode('/', $node);
+		array_pop($nodesAr);
+		$fs = new fs( dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+		$dir = $fs->getPath(implode('/', $nodesAr));
+		file_put_contents($dir . DIRECTORY_SEPARATOR .$node, '');
+		$rslt = $fs->save_file($node, $_POST['content']);
+	} else{
+		$rslt = $fs->save_file($node, $_POST['content']);
+	}
+	
 	echo json_encode(array('saved' => true));exit;
 } elseif(isset($_GET['operation'])) {
 	$fs = new fs( dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
