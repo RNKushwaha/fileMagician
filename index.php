@@ -53,16 +53,6 @@ else $show_indent = true;
             <div class="collapse navbar-collapse col-md-3" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto float-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Plugins
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="db.php" target="_blank">Adminer</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:;" target="_blank" >Available Plugins</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="avascript:;" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More
                         </a>

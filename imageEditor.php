@@ -8,7 +8,7 @@
         <meta name="description" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <meta name="keywords" content="File manager, Online Editor, Image crop, Image Resize, Image filters and Online document viewer">
         <title>fileMagician: Adding Awesomeness to the web</title>
-        <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
+        <link rel='shortcut icon' type='image/x-icon' href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABGElEQVQ4T7XTuy6EYRDG8d+GCnegQhwSJTWJBI1E52JEHEJwC2pUGhGiUCgV6GzilBAULoAoHDPJbLLWnhrTfPnyvvOf531mpoBvfKodLdjFDN4rrxUSEN9a8YEDfFWDNAtow05WmC6v1CyglBPP+aW2GUB5wfDr/wGLWMiyS4j/UtRVcIrhGq24Rjs68YQtrOC13IOgR1xiHGHYEXqxjWXcoi8V9mC0GmANswnbyMrzmXiY8Hus4qYa4AqTqeAEI+hCJJ9jCFN4wF454CwPK21oRUxjJIdHFxhAB14azcEjJtK88KOIwVT4HDvSCBDv7MYc+rGfyeFBeFVsBIgdOMZddiH8CfkxG9HSsRKgzjL+OQrYJtbx9gPWj0zk33UbEQAAAABJRU5ErkJggg==' />
         <link type="text/css" href="<?php loadStaticResource('vendor/tui/css/tui-color-picker.css');?>" rel="stylesheet">
         <link type="text/css" href="<?php loadStaticResource('vendor/tui/css/tui-image-editor.min.css');?>" rel="stylesheet">
         <style>
