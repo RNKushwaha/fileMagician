@@ -36,16 +36,13 @@
 - Bootstrap Framework
 - Adminer Database Plugin
 - Google Files Preview
-- Cruzer Softwares
-
 
 ## Join Us
 
 Please join us to make this project more effective and valuable for the web. Join us for features or documentation.
-Write to me at support@cruzersoftwares.com .
 
 ## Support Us
 
-Please support us to keep this project live and upto date. Donate to fileMagician.
+Please support to keep this project live and upto date. Donate to fileMagician.
 
 
